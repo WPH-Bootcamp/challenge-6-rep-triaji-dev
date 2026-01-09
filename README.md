@@ -1,4 +1,4 @@
-# Challenge 8 - Slicing Figma Movie App with Tanstack Query
+# Challenge 6 - Slicing Figma Movie App with Tanstack Query
 
 # Description
 
