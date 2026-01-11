@@ -1,10 +1,13 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useTrendingMovies, useNewReleaseMoviesInfinite } from '../hooks/useMovies';
 import Button from '../components/ui/Button';
 import { HeroSlider } from '../components/container/HeroSlider';
 import MovieCard from '../components/container/MovieCard';
 import { HeroSection } from '../components/container/HeroSection';
 import { Carousel } from '../components/container/Carousel';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
+import { useTrailer } from '../hooks/useTrailer';
+import { VideoModal } from '../components/ui/VideoModal';
 
 export const HomePage: React.FC = () => {
   const { 
@@ -22,7 +25,13 @@ export const HomePage: React.FC = () => {
     error: newReleaseError
   } = useNewReleaseMoviesInfinite();
 
-  const [isModalOpen] = useState(false);
+  const { 
+    trailerKey, 
+    isModalOpen, 
+    isLoading: trailerLoading, 
+    handleWatchTrailer, 
+    closeModal 
+  } = useTrailer();
 
   const trendingMovies = useMemo(() => {
     return trendingData?.results.slice(0, 10) || [];
@@ -35,7 +44,7 @@ export const HomePage: React.FC = () => {
   const loading = trendingLoading || newReleaseLoading;
   const error = trendingError || newReleaseError;
 
-  if (loading) return <div className="bg-black min-h-screen text-white p-8">Loading...</div>;
+  if (loading) return <LoadingSpinner />;
   if (error) return <div className="bg-black min-h-screen text-white p-8">Error: {error instanceof Error ? error.message : 'Unknown error'}</div>;
 
   return (
@@ -43,7 +52,7 @@ export const HomePage: React.FC = () => {
       {/* Hero Section */}
       {trendingMovies.length > 0 && (
         <HeroSlider items={trendingMovies} paused={isModalOpen}>
-          {(movie) => <HeroSection movie={movie} />}
+          {(movie) => <HeroSection movie={movie} onWatchTrailer={() => handleWatchTrailer(movie.id)} />}
         </HeroSlider>
       )}
 
@@ -65,7 +74,13 @@ export const HomePage: React.FC = () => {
           </h2>
           <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4'>
             {newReleaseMovies.map((movie) => (
-              <MovieCard key={`new-${movie.id}`} movie={movie} size='large' />
+              <MovieCard 
+                key={`new-${movie.id}`} 
+                movie={movie} 
+                size='large' 
+                onWatchTrailer={() => handleWatchTrailer(movie.id)}
+                trailerAvailable={!trailerLoading}
+              />
             ))}
           </div>
           {hasNextPage && (
@@ -90,8 +105,15 @@ export const HomePage: React.FC = () => {
           )}
         </div>
       </section>
+
+      <VideoModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        videoId={trailerKey || ''}
+      />
     </div>
   );
 };
 
 export default HomePage;
+

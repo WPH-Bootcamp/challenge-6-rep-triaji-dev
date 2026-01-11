@@ -4,6 +4,7 @@ import MovieCard from '../components/container/MovieCard';
 import Button from '../components/ui/Button';
 import { VideoModal } from '../components/ui/VideoModal';
 import { useTrailer } from '../hooks/useTrailer';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
 
 const FavoritePage: React.FC = () => {
   const { favoriteMovies, loading, handleRemoveFromFavorites } = useFavorite();
@@ -20,7 +21,7 @@ const FavoritePage: React.FC = () => {
   return (
     <div className='px-4 sm:px-15 lg:px-25 xl:px-35 mt-30 min-h-[80vh]'>
       <div className='text-2xl md:text-3xl font-bold'>Favorites</div>
-      {loading && <p>Loading...</p>}
+      {loading && <LoadingSpinner className="h-60" />}
       {showNotFound && (
         <div className='flex flex-col items-center justify-center'>
           <img

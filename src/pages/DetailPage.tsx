@@ -13,6 +13,7 @@ import { VideoModal } from '../components/ui/VideoModal';
 import { CastCard } from '../components/container/CastCard';
 import InfoCard from '../components/ui/InfoCard';
 import { useTrailer } from '../hooks/useTrailer';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
 import { useFavoriteToggle } from '../hooks/useFavoriteToggle';
 import FavoriteButton from '../components/ui/FavoriteButton';
 import type { Movie } from '../types/movie';
@@ -47,7 +48,7 @@ const DetailPage: React.FC = () => {
     return new Date(dateString).getFullYear().toString();
   };
 
-  if (loadingMovie || loadingCredits) return <div className='text-center py-20 bg-black text-white min-h-screen'>Loading...</div>;
+  if (loadingMovie || loadingCredits) return <LoadingSpinner />;
   if (!movie) return <div className='text-center py-20 bg-black text-white min-h-screen'>Movie not found.</div>;
   if (errorMovie) return <div className='text-center py-20 text-red-500 bg-black min-h-screen'>Error loading details</div>;
 

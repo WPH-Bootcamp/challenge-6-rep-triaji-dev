@@ -4,6 +4,7 @@ import MovieCard from '../components/container/MovieCard';
 import Button from '../components/ui/Button';
 import { VideoModal } from '../components/ui/VideoModal';
 import { useTrailer } from '../hooks/useTrailer';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
 
 const SearchPage: React.FC = () => {
   const {
@@ -34,7 +35,7 @@ const SearchPage: React.FC = () => {
         showNotFound ? 'items-center' : 'items-start'
       }`}
     >
-      {loading && <p className="text-white">Loading...</p>}
+      {loading && <LoadingSpinner className="h-60" />}
       {error && <p className='text-red-500'>Error: {error instanceof Error ? error.message : 'Unknown error'}</p>}
       {showNotFound && (
         <div className='flex flex-col items-center justify-center'>
