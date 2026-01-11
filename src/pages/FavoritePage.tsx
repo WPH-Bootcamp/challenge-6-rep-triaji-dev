@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useFavorite } from '../../hooks/useFavorite';
-import MovieCard from '../container/MovieCard';
-import Button from '../ui/Button';
-import { VideoModal } from '../ui/Video/VideoModal';
-import { useTrailer } from '../../hooks/useTrailer';
+import { useFavorite } from '../hooks/useFavorite';
+import MovieCard from '../components/container/MovieCard';
+import Button from '../components/ui/Button';
+import { VideoModal } from '../components/ui/Video/VideoModal';
+import { useTrailer } from '../hooks/useTrailer';
 
 const FavoritePage: React.FC = () => {
   const { favoriteMovies, loading, handleRemoveFromFavorites } = useFavorite();

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useHome } from '../../hooks/useHome';
-import Button from '../ui/Button';
-import { HeroSlider } from '../container/HeroSlider';
-import MovieCard from '../container/MovieCard';
-import { HeroSection } from '../container/HeroSection';
-import { Carousel } from '../container/Carousel';
-import { useScreenSize } from '../../hooks/useScreenSize';
+import { useHome } from '../hooks/useHome';
+import Button from '../components/ui/Button';
+import { HeroSlider } from '../components/container/HeroSlider';
+import MovieCard from '../components/container/MovieCard';
+import { HeroSection } from '../components/container/HeroSection';
+import { Carousel } from '../components/container/Carousel';
+import { useScreenSize } from '../hooks/useScreenSize';
 
 export const HomePage: React.FC = () => {
   const {
