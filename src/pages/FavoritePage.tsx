@@ -24,7 +24,7 @@ const FavoritePage: React.FC = () => {
       {showNotFound && (
         <div className='flex flex-col items-center justify-center'>
           <img
-            src='/data-not-foundpng.png'
+            src='/icons/data-not-found.svg'
             alt='No Favorite Movies'
             className='w-[200px] h-[200px] mb-6 mt-40'
           />

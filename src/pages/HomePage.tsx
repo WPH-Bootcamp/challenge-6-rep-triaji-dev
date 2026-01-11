@@ -1,33 +1,42 @@
-import React, { useState } from 'react';
-import { useHome } from '../hooks/useHome';
+import React, { useState, useMemo } from 'react';
+import { useTrendingMovies, useNewReleaseMoviesInfinite } from '../hooks/useMovies';
 import Button from '../components/ui/Button';
 import { HeroSlider } from '../components/container/HeroSlider';
 import MovieCard from '../components/container/MovieCard';
 import { HeroSection } from '../components/container/HeroSection';
 import { Carousel } from '../components/container/Carousel';
-import { useScreenSize } from '../hooks/useScreenSize';
 
 export const HomePage: React.FC = () => {
+  const { 
+    data: trendingData, 
+    isLoading: trendingLoading, 
+    error: trendingError 
+  } = useTrendingMovies();
+
   const {
-    trendingMovies,
-    newReleaseMovies,
-    loading,
-    error,
-    hasMoreMovies,
-    loadMoreMovies,
-  } = useHome();
+    data: newReleaseData,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading: newReleaseLoading,
+    error: newReleaseError
+  } = useNewReleaseMoviesInfinite();
 
   const [isModalOpen] = useState(false);
-  const { colCount } = useScreenSize();
-  const [rowsToShow, setRowsToShow] = useState(2);
 
-  const newReleaseCardsToShow = newReleaseMovies.slice(
-    0,
-    rowsToShow * colCount
-  );
+  const trendingMovies = useMemo(() => {
+    return trendingData?.results.slice(0, 10) || [];
+  }, [trendingData]);
+
+  const newReleaseMovies = useMemo(() => {
+    return newReleaseData?.pages.flatMap((page) => page.results) || [];
+  }, [newReleaseData]);
+
+  const loading = trendingLoading || newReleaseLoading;
+  const error = trendingError || newReleaseError;
 
   if (loading) return <div className="bg-black min-h-screen text-white p-8">Loading...</div>;
-  if (error) return <div className="bg-black min-h-screen text-white p-8">Error: {error}</div>;
+  if (error) return <div className="bg-black min-h-screen text-white p-8">Error: {error instanceof Error ? error.message : 'Unknown error'}</div>;
 
   return (
     <div className='mx-auto bg-black min-h-screen text-white pb-20'>
@@ -55,28 +64,27 @@ export const HomePage: React.FC = () => {
             New Release
           </h2>
           <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4'>
-            {newReleaseCardsToShow.map((movie) => (
+            {newReleaseMovies.map((movie) => (
               <MovieCard key={`new-${movie.id}`} movie={movie} size='large' />
             ))}
           </div>
-          {hasMoreMovies && (
+          {hasNextPage && (
             <div
               className='w-full h-[150px] md:h-[300px] absolute bottom-0 left-0 bg-linear-to-t from-black via-black/80 to-transparent flex items-center justify-center z-50 transition-all duration-300 hover:from-black/90 hover:via-black/90 active:from-black active:via-black/95 cursor-pointer'
               onClick={() => {
-                setRowsToShow((prev) => prev + 2);
-                loadMoreMovies();
+                fetchNextPage();
               }}
             >
               <Button
                 variant='secondary'
                 className='translate-y-5 md:translate-y-10 shadow-2xl transition-transform duration-300 hover:scale-105 active:scale-95'
+                disabled={isFetchingNextPage}
                 onClick={(e) => {
                   e.stopPropagation();
-                  setRowsToShow((prev) => prev + 2);
-                  loadMoreMovies();
+                  fetchNextPage();
                 }}
               >
-                Load More
+                {isFetchingNextPage ? 'Loading...' : 'Load More'}
               </Button>
             </div>
           )}

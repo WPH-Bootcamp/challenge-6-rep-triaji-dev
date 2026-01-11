@@ -35,7 +35,7 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
       }}
     >
       <img
-        src={isFavorite ? '/icon-fav-on.svg' : '/icon-fav-off.svg'}
+        src={isFavorite ? '/icons/icon-fav-on.svg' : '/icons/icon-fav-off.svg'}
         alt={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         className={`cursor-pointer ${iconSizeClasses[size]}`}
       />

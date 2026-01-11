@@ -118,7 +118,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
             </Link>
             <div className='flex items-center gap-2 mb-2'>
               <img
-                src='/icon-rating.svg'
+                src='/icons/icon-rating.svg'
                 alt='rating'
                 className='w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6'
               />
