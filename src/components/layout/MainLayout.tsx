@@ -1,6 +1,7 @@
 import React, { type ReactNode } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { Toaster } from '../ui/Toaster';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -12,6 +13,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       <Navbar addClass='sticky top-0 z-50 fixed' />
       <main className='grow -mt-22.5'>{children}</main>
       <Footer />
+      <Toaster />
     </div>
   );
 };

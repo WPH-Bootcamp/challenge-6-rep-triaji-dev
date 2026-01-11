@@ -4,7 +4,7 @@ import { getImageUrl } from '../../api/movies';
 import type { MovieCardProps } from '../../types/movie';
 import { IoPlayCircle } from 'react-icons/io5';
 import { useFavoriteToggle } from '../../hooks/useFavoriteToggle';
-import FavoriteButton from '../ui/FavoriteButton/FavoriteButton';
+import FavoriteButton from '../ui/FavoriteButton';
 
 const TrailerButton: React.FC<{
   onClick?: () => void;

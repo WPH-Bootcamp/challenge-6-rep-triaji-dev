@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useFavorite } from '../hooks/useFavorite';
 import MovieCard from '../components/container/MovieCard';
 import Button from '../components/ui/Button';
-import { VideoModal } from '../components/ui/Video/VideoModal';
+import { VideoModal } from '../components/ui/VideoModal';
 import { useTrailer } from '../hooks/useTrailer';
 
 const FavoritePage: React.FC = () => {

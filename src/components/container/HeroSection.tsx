@@ -3,7 +3,7 @@ import Button from '../ui/Button';
 import type { Movie } from '../../types/movie';
 import { getImageUrl } from '../../api/movies';
 import { IoPlayCircle } from 'react-icons/io5';
-import { VideoModal } from '../ui/Video';
+import { VideoModal } from '../ui/VideoModal';
 import { useTrailer } from '../../hooks/useTrailer';
 
 interface HeroSectionProps {

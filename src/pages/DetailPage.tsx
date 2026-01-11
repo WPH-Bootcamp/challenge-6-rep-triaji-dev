@@ -9,12 +9,12 @@ import {
 import { getImageUrl } from '../api/movies';
 import Button from '../components/ui/Button';
 import { IoPlayCircle } from 'react-icons/io5';
-import { VideoModal } from '../components/ui/Video/VideoModal';
+import { VideoModal } from '../components/ui/VideoModal';
 import { CastCard } from '../components/container/CastCard';
-import InfoCard from '../components/ui/InfoCard/InfoCard';
+import InfoCard from '../components/ui/InfoCard';
 import { useTrailer } from '../hooks/useTrailer';
 import { useFavoriteToggle } from '../hooks/useFavoriteToggle';
-import FavoriteButton from '../components/ui/FavoriteButton/FavoriteButton';
+import FavoriteButton from '../components/ui/FavoriteButton';
 import type { Movie } from '../types/movie';
 
 const DetailPage: React.FC = () => {
