@@ -10,7 +10,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <div className='min-h-screen flex flex-col bg-black'>
       <Navbar addClass='sticky top-0 z-50 fixed' />
-      <main className='flex-grow -mt-22.5'>{children}</main>
+      <main className='grow -mt-22.5'>{children}</main>
       <Footer />
     </div>
   );
