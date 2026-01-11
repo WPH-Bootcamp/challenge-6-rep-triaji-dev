@@ -10,6 +10,7 @@ export const TMDB_ENDPOINTS = {
   },
   IMAGES: {
     BASE_URL: 'https://image.tmdb.org/t/p/',
-    POSTER_SIZE: 'w780',
+    POSTER_SIZE: 'original',
+    BACKDROP_SIZE: 'original',
   },
 };

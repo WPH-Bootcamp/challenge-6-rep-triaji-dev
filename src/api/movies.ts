@@ -1,9 +1,9 @@
-import { api as tmdbApi } from '../lib/api';
-import { TMDB_ENDPOINTS } from '../constants/endpoints';
+import { api as tmdbApi } from './client';
+import { TMDB_ENDPOINTS } from './endpoints';
 import type {
   MovieListResponse,
   Movie,
-} from '../interfaces/movie.interface';
+} from '../types/movie';
 
 export const getTrendingMovies = (): Promise<MovieListResponse> =>
   tmdbApi.get(TMDB_ENDPOINTS.MOVIES.TRENDING).then(({ data }) => data);
