@@ -26,11 +26,11 @@ export const HomePage: React.FC = () => {
     rowsToShow * colCount
   );
 
-  if (loading) return <div className="bg-neutral-900 min-h-screen text-white p-8">Loading...</div>;
-  if (error) return <div className="bg-neutral-900 min-h-screen text-white p-8">Error: {error}</div>;
+  if (loading) return <div className="bg-black min-h-screen text-white p-8">Loading...</div>;
+  if (error) return <div className="bg-black min-h-screen text-white p-8">Error: {error}</div>;
 
   return (
-    <div className='mx-auto bg-neutral-900 min-h-screen text-neutral-50 pb-20'>
+    <div className='mx-auto bg-black min-h-screen text-white pb-20'>
       {/* Hero Section */}
       {trendingMovies.length > 0 && (
         <HeroSlider items={trendingMovies} paused={isModalOpen}>
@@ -61,7 +61,7 @@ export const HomePage: React.FC = () => {
           </div>
           {hasMoreMovies && (
             <div
-              className='w-full h-[150px] md:h-[300px] absolute bottom-0 left-0 bg-linear-to-t from-neutral-900 via-neutral-900/80 to-transparent flex items-center justify-center z-50 transition-all duration-300 hover:from-neutral-900/90 hover:via-neutral-900/90 active:from-neutral-900 active:via-neutral-900/95 cursor-pointer'
+              className='w-full h-[150px] md:h-[300px] absolute bottom-0 left-0 bg-linear-to-t from-black via-black/80 to-transparent flex items-center justify-center z-50 transition-all duration-300 hover:from-black/90 hover:via-black/90 active:from-black active:via-black/95 cursor-pointer'
               onClick={() => {
                 setRowsToShow((prev) => prev + 2);
                 loadMoreMovies();
