@@ -97,7 +97,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
             src={
               movie.poster_path
                 ? getImageUrl(movie.poster_path)
-                : '/data-not-foundpng.png'
+                : '/icons/data-not-found.svg'
             }
             alt={movie.title}
             className='w-32 h-44 lg:w-40 lg:h-60 rounded-sm lg:rounded-md object-cover shadow-xl hover:opacity-80 transition-opacity duration-200 cursor-pointer'

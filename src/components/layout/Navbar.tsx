@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useNavigate, Link } from 'react-router-dom';
-import Input from '../../components-sample/ui/Input';
+import Input from '../../components/ui/Input';
 
 interface NavbarProps {
   addClass?: string;
@@ -151,7 +151,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                   aria-label='Clear search input'
                 >
                   <img
-                    src='/icon-search-clear.svg'
+                    src='/icons/icon-search-clear.svg'
                     alt='Clear'
                     className='h-5 w-5 opacity-25 cursor-pointer'
                   />
@@ -167,7 +167,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               type='button'
             >
               <img
-                src='/icon-search.svg'
+                src='/icons/icon-search.svg'
                 alt='Open search'
                 className='h-6 w-6 mr-4'
               />
@@ -179,7 +179,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               type='button'
             >
               <img
-                src='/icon-hamburger.svg'
+                src='/icons/icon-hamburger.svg'
                 alt='Open menu'
                 className='h-6 w-6'
               />
@@ -192,7 +192,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           <div className='flex items-center justify-between mb-12'>
             <div className='flex items-center space-x-2'>
               <img
-                src='/logo-navbar.svg'
+                src='/icons/logo-navbar.svg'
                 alt='logo'
                 className='h-9 md:scale-110'
               />
@@ -206,7 +206,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               onClick={() => setMenuOpen(false)}
               type='button'
             >
-              <img src='/icon-close.svg' alt='Close menu' className='h-5 w-5' />
+              <img src='/icons/icon-close.svg' alt='Close menu' className='h-5 w-5' />
             </button>
           </div>
           <nav className='flex flex-col gap-8 text-xl'>
@@ -247,11 +247,11 @@ const Navbar: React.FC<NavbarProps> = () => {
               onClick={() => setSearchOpen(false)}
               type='button'
             >
-              <img src='/arrow-left.svg' alt='Back' className='h-6 w-6' />
+              <img src='/icons/arrow-left.svg' alt='Back' className='h-6 w-6' />
             </button>
             <form onSubmit={handleSearch} className='relative flex-1'>
               <img
-                src='/icon-search.svg'
+                src='/icons/icon-search.svg'
                 alt='search'
                 className='absolute left-4 top-1/2 transform -translate-y-1/2'
               />
@@ -272,7 +272,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                   aria-label='Clear search input'
                 >
                   <img
-                    src='/icon-search-clear.svg'
+                    src='/icons/icon-search-clear.svg'
                     alt='Clear'
                     className='h-5 w-5 opacity-25 cursor-pointer'
                   />
