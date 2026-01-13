@@ -5,8 +5,10 @@ import Button from '../components/ui/Button';
 import { VideoModal } from '../components/ui/VideoModal';
 import { useTrailer } from '../hooks/useTrailer';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
+import { useNavigate } from 'react-router-dom';
 
 const FavoritePage: React.FC = (): React.ReactElement => {
+  const navigate = useNavigate();
   const { favoriteMovies, loading } = useFavorite();
   const [visibleCount, setVisibleCount] = useState(5);
   const { trailerKey, isModalOpen, isLoading, handleWatchTrailer, closeModal } =
@@ -30,11 +32,15 @@ const FavoritePage: React.FC = (): React.ReactElement => {
             className='w-[200px] h-[200px] mb-6 mt-40'
           />
           <div className='text-md font-semibold text-white mb-2'>
-            No Favorite Movies
+            Data Empty
           </div>
           <div className='text-md font-normal text-neutral-400'>
-            Add some movies to your favorites
+            You don't have a favorite movie yet
           </div>
+          <Button variant='primary' className='mt-6'                 
+           onClick={() => navigate(`/`)}>
+            Explore Movie
+          </Button>
         </div>
       )}
       {favoriteMovies.length > 0 && (

@@ -15,14 +15,14 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
 }) => {
   const sizeClasses = {
     small: 'w-10 h-10',
-    medium: 'w-12 h-12',
+    medium: 'w-11 h-11',
     large: 'w-14 h-14',
   };
 
   const iconSizeClasses = {
-    small: 'w-5 h-5',
-    medium: 'w-6 h-6',
-    large: 'w-7 h-7',
+    small: 'w-4 h-4',
+    medium: 'w-5 h-5',
+    large: 'w-6 h-6',
   };
 
   return (

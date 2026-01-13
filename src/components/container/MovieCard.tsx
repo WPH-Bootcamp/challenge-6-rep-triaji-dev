@@ -67,14 +67,15 @@ const MovieCard: React.FC<MovieCardProps> = ({
   }
 
   return (
-    <div className='relative flex flex-col mb-0 lg:mb-16 mt-8 w-full border-b border-neutral-800 last:border-b-0 pb-8'>
+    <div className='relative flex flex-col mb-0 lg:mb-16 mt-12 w-full border-b border-neutral-800 last:border-b-0 pb-12'>
       <FavoriteButton
+        size='large'
         isFavorite={isFavorite}
         onClick={handleFavoriteToggle}
-        className='absolute top-6 right-6 lg:flex hidden z-10'
+        className='absolute right-0 lg:flex hidden z-10'
       />
 
-      <div className='flex flex-row lg:items-start p-4 lg:px-8 rounded-2xl'>
+      <div className='flex flex-row lg:items-start rounded-2xl'>
         {/* Poster */}
         <Link
           to={`/movie/${movie.id}`}
@@ -89,33 +90,33 @@ const MovieCard: React.FC<MovieCardProps> = ({
                 : '/icons/data-not-found.svg'
             }
             alt={movie.title}
-            className='w-32 h-44 lg:w-40 lg:h-60 rounded-sm lg:rounded-md object-cover shadow-xl hover:opacity-80 transition-opacity duration-200 cursor-pointer'
+            className='w-32 h-44 lg:w-45 lg:h-67.5 rounded-sm lg:rounded-md object-cover shadow-xl hover:opacity-80 transition-opacity duration-200 cursor-pointer'
           />
         </Link>
 
         {/* Content */}
         <div className='flex-1 flex flex-col justify-between min-w-0'>
-          <div className='flex-1'>
+          <div className='flex-1 pr-0 lg:pr-45'>
             <Link
               to={`/movie/${movie.id}`}
               tabIndex={0}
               aria-label={`Go to details for ${movie.title}`}
             >
-              <h2 className='text-xl sm:text-2xl lg:text-2xl font-bold text-white mb-2 line-clamp-2 hover:text-neutral-400 transition-colors duration-200 cursor-pointer'>
+              <h2 className='text-lg sm:text-xl md:text-2xl font-semibold text-white mb-2 md:mb-3 line-clamp-2 hover:text-neutral-400 transition-colors duration-200 cursor-pointer'>
                 {movie.title}
               </h2>
             </Link>
-            <div className='flex items-center gap-2 mb-2'>
+            <div className='flex items-center gap-2 mb-2 md:mb-3'>
               <img
                 src='/icons/icon-rating.svg'
                 alt='rating'
                 className='w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6'
               />
-              <span className='text-white font-semibold text-sm sm:text-md lg:text-lg mt-1'>
+              <span className='text-white text-sm sm:text-md lg:text-lg'>
                 {movie.vote_average.toFixed(1)}/10
               </span>
             </div>
-            <p className='text-neutral-300 text-sm sm:text-md lg:text-lg mb-4 line-clamp-2 lg:line-clamp-3 max-w-4xl mt-2 hover:text-neutral-400'>
+            <p className='text-neutral-400 text-xs sm:text-sm lg:text-md mb-4 line-clamp-4 md:line-clamp-3 max-w-4xl mt-2 hover:text-neutral-500'>
               {movie.overview}
             </p>
           </div>
@@ -124,7 +125,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
               variant='primary'
               onClick={handleWatchTrailerClick}
               disabled={!trailerAvailable}
-              className='shrink-0 px-7 py-3 h-auto w-auto shadow-md text-white md:w-auto md:h-13'
+              className=''
               icon={<IoPlayCircle size={22} />}
             >
               Watch Trailer
@@ -141,7 +142,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
             variant='primary'
             onClick={handleWatchTrailerClick}
             disabled={!trailerAvailable}
-            className='flex-1 px-7 py-3 h-auto shadow-md text-white'
+            className='flex-1 px-7 py-3 h-11 w-auto shadow-md text-white'
             icon={<IoPlayCircle size={22} />}
           >
             Watch Trailer
