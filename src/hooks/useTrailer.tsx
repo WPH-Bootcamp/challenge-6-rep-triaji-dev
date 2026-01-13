@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { getMovieTrailer } from '../api/movies';
+import { toast } from 'sonner';
 
 interface UseTrailerReturn {
   handleWatchTrailer: (movieId: number, key?: string) => Promise<void>;
@@ -28,12 +29,11 @@ export const useTrailer = (): UseTrailerReturn => {
         setTrailerKey(fetchedKey);
         setIsModalOpen(true);
       } else {
-        // TODO: Handle no trailer found case using toast
-        alert('No trailer available for this movie.');
+        toast.error('No trailer available for this movie.');
       }
     } catch (error) {
       console.error('Failed to fetch trailer', error);
-      alert('Failed to load trailer.');
+      toast.error('Failed to load trailer. Please try again later.');
     } finally {
       setIsLoading(false);
     }

@@ -5,23 +5,9 @@ import type { MovieCardProps } from '../../types/movie';
 import { IoPlayCircle } from 'react-icons/io5';
 import { useFavoriteToggle } from '../../hooks/useFavoriteToggle';
 import FavoriteButton from '../ui/FavoriteButton';
+import Button from '../ui/Button';
 
-// TODO: refactor using Button.tsx
-const TrailerButton: React.FC<{
-  onClick?: () => void;
-  disabled: boolean;
-  className?: string;
-}> = ({ onClick, disabled, className = '' }) => (
-  <button
-    className={`bg-primary-300 hover:bg-primary-400 text-white font-semibold rounded-full px-7 py-3 flex items-center justify-center gap-2 text-base shadow-md transition-colors duration-200 cursor-pointer ${className}`}
-    onClick={onClick}
-    disabled={disabled}
-  >
-    <span className='flex items-center justify-center gap-2'>
-      Watch Trailer <IoPlayCircle size={22} />
-    </span>
-  </button>
-);
+
 
 const MovieCard: React.FC<MovieCardProps> = ({
   movie,
@@ -134,11 +120,15 @@ const MovieCard: React.FC<MovieCardProps> = ({
             </p>
           </div>
           <div className='hidden lg:flex items-center gap-4 mt-1'>
-            <TrailerButton
+            <Button
+              variant='primary'
               onClick={handleWatchTrailerClick}
               disabled={!trailerAvailable}
-              className='shrink-0'
-            />
+              className='shrink-0 px-7 py-3 h-auto w-auto shadow-md text-white md:w-auto md:h-13'
+              icon={<IoPlayCircle size={22} />}
+            >
+              Watch Trailer
+            </Button>
             {children}
           </div>
         </div>
@@ -147,11 +137,15 @@ const MovieCard: React.FC<MovieCardProps> = ({
       {/* Mobile Version */}
       <div className='lg:hidden mt-8'>
         <div className='flex gap-3 items-center'>
-          <TrailerButton
+          <Button
+            variant='primary'
             onClick={handleWatchTrailerClick}
             disabled={!trailerAvailable}
-            className='flex-1'
-          />
+            className='flex-1 px-7 py-3 h-auto shadow-md text-white'
+            icon={<IoPlayCircle size={22} />}
+          >
+            Watch Trailer
+          </Button>
           <FavoriteButton
             isFavorite={isFavorite}
             onClick={handleFavoriteToggle}
