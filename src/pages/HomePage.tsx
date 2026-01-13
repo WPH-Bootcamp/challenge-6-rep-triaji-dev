@@ -57,7 +57,7 @@ export const HomePage: React.FC = (): React.ReactElement => {
       )}
 
       {/* Trending Now */}
-      <section className='px-4 sm:px-15 lg:px-25 xl:px-35 mb-8 md:mb-12 lg:mt-20'>
+      <section className='px-4 sm:px-15 lg:px-25 xl:px-35 mb-8 md:mb-12'>
         <div className='flex items-center justify-between mb-4 md:mb-6 md:mt-40 lg:mt-0 '>
           <h2 className='text-xl md:text-2xl lg:text-3xl font-bold pb-2 lg:pb-8'>
             Trending Now

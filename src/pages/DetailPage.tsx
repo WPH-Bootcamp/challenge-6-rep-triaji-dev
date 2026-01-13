@@ -16,6 +16,7 @@ import { useTrailer } from '../hooks/useTrailer';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 import { useFavoriteToggle } from '../hooks/useFavoriteToggle';
 import FavoriteButton from '../components/ui/FavoriteButton';
+import { useScreenSize } from '../hooks/useScreenSize';
 import type { Movie } from '../types/movie';
 
 const DetailPage: React.FC = () => {
@@ -35,6 +36,8 @@ const DetailPage: React.FC = () => {
     movieData: movie as Movie,
   });
 
+  const { isMobile } = useScreenSize();
+
   const cast = useMemo(() => credits?.cast.slice(0, 5) || [], [credits]);
   const crew = useMemo(() => credits?.crew.slice(0, 5) || [], [credits]);
 
@@ -45,7 +48,11 @@ const DetailPage: React.FC = () => {
 
   const formatDate = (dateString?: string) => {
     if (!dateString) return '-';
-    return new Date(dateString).getFullYear().toString();
+    return new Date(dateString).toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
   };
 
   if (loadingMovie || loadingCredits) return <LoadingSpinner />;
@@ -57,7 +64,7 @@ const DetailPage: React.FC = () => {
   return (
     <div className='min-h-screen bg-black text-white flex flex-col'>
       {/* Background Image */}
-      <div className='relative w-full h-96 md:h-128 lg:h160'>
+      <div className='relative w-full h-100 md:h-160 lg:h-200'>
         <img
           src={getImageUrl(movie.backdrop_path, 'w1280')}
           alt={movie.title}
@@ -68,16 +75,16 @@ const DetailPage: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className=' -mt-40 z-10 relative px-4 sm:px-15 lg:px-25 xl:px-35 pb-12'>
+      <div className=' -mt-40 z-10 relative px-4 sm:px-15 lg:px-25 xl:px-35 pb-12 -translate-y-4 md:-translate-y-32 lg:-translate-y-64'>
         <div className='max-w-9xl mx-auto'>
           <div className='grid grid-cols-[140px_1fr] sm:grid-cols-[200px_1fr] md:grid-cols-[280px_1fr] space-x-6 md:space-x-8'>
             {/* Poster */}
-            <div className='row-span-2 md:col-span-1'>
-              <div className='rounded-md md:rounded-xl max-w-80 overflow-hidden h-full flex items-center'>
+            <div className='row-span-2 md:col-span-1 mb-3'>
+              <div className='rounded-md md:rounded-xl overflow-hidden flex items-center shadow-2xl shrink-0'>
                 <img
                   src={getImageUrl(movie.poster_path)}
                   alt={movie.title}
-                  className='w-full h-full object-cover shadow-2xl rounded-md md:rounded-xl '
+                  className='w-[116px] h-[174px] md:w-[260px] md:h-[384px] object-cover rounded-md md:rounded-xl'
                 />
               </div>
             </div>
@@ -86,10 +93,10 @@ const DetailPage: React.FC = () => {
             <div className='md:col-span-2'>
               {/* Title */}
               <div className='mb-4'>
-                <h1 className='text-2xl md:text-3xl lg:text-4xl font-bold'>
+                <h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold'>
                   {movie.title}
                 </h1>
-                <div className='flex items-center gap-2 text-md font-medium mt-4'>
+                <div className='flex items-center gap-2 text-sm md:text-md font-medium mt-4'>
                   <img
                     src='/icons/icon-calendar.svg'
                     alt='calendar'
@@ -111,15 +118,14 @@ const DetailPage: React.FC = () => {
                       handleWatchTrailer(movie.id, trailerKey || undefined)
                     }
                     disabled={trailerLoading}
-                    className='rounded-full px-10 py-3 text-lg font-bold bg-primary-300 hover:bg-primary-400 border-none w-full! md:w-64! shadow-lg'
-                    style={{ minWidth: 0 }}
+                    className='rounded-full px-10 py-3 text-md font-bold bg-primary-300 hover:bg-primary-400 border-none flex-1 w-auto md:flex-none md:w-64 shadow-lg'
                   >
                     {trailerLoading ? 'Loading...' : 'Watch Trailer'}
                   </Button>
                   <FavoriteButton
                     isFavorite={isFavorite}
                     onClick={handleFavoriteToggle}
-                    size='large'
+                    size={isMobile ? 'medium' : 'large'}
                   />
                 </div>
               </div>
@@ -147,17 +153,17 @@ const DetailPage: React.FC = () => {
 
           {/* Overview Section */}
           <div className='md:mt-8'>
-            <h2 className='text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mt-12'>
+            <h2 className='text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mt-12'>
               Overview
             </h2>
-            <p className='text-neutral-200 text-base md:text-lg lg:text-xl leading-relaxed'>
+            <p className='text-neutral-400 text-xs md:text-sm lg:text-md leading-relaxed'>
               {movie.overview}
             </p>
           </div>
 
           {/* Cast & Crew */}
           <div className='mt-12'>
-            <h2 className='text-2xl md:text-3xl lg:text-4xl font-bold mb-6'>
+            <h2 className='text-xl md:text-2xl lg:text-3xl font-bold mb-6'>
               Cast & Crew
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>

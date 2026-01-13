@@ -130,7 +130,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           <div className='flex items-center space-x-2'>
             <form
               onSubmit={handleSearch}
-              className='relative max-w-60 flex items-center justify-end backdrop-blur-lg '
+              className='relative max-w-60 flex items-center justify-end backdrop-blur-lg rounded-md'
             >
               <img
                 src='/icons/icon-search.svg'
@@ -220,7 +220,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               <img
                 src='/icons/icon-search.svg'
                 alt='Open search'
-                className='h-5 w-5 md:h-6 md:w-6 mr-3 md:mr-4'
+                className='h-5 w-5 md:h-6 md:w-6'
               />
             </Button>
             <Button
