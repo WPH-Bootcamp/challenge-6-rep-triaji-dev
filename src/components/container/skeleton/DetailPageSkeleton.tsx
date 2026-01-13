@@ -1,6 +1,6 @@
 import React from 'react';
-import Skeleton from '../ui/Skeleton';
-import { useScreenSize } from '../../hooks/useScreenSize';
+import Skeleton from '../../ui/Skeleton';
+import { useScreenSize } from '../../../hooks/useScreenSize';
 
 export const DetailPageSkeleton: React.FC = () => {
     const { isMobile } = useScreenSize();

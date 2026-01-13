@@ -9,8 +9,8 @@ import { HeroSection } from '../components/container/HeroSection';
 import { Carousel } from '../components/container/Carousel';
 import { useTrailer } from '../hooks/useTrailer';
 import { VideoModal } from '../components/ui/VideoModal';
-import MovieCardSkeleton from '../components/container/MovieCardSkeleton';
-import { HeroSectionSkeleton } from '../components/container/HeroSectionSkeleton';
+import MovieCardSkeleton from '../components/container/skeleton/MovieCardSkeleton';
+import { HeroSectionSkeleton } from '../components/container/skeleton/HeroSectionSkeleton';
 
 export const HomePage: React.FC = (): React.ReactElement => {
   const { 
@@ -54,7 +54,6 @@ export const HomePage: React.FC = (): React.ReactElement => {
     });
   }, []);
 
-  // Check if all displayed new release movies have loaded their images
   const allImagesLoaded = React.useMemo(() => {
     if (newReleaseMovies.length === 0) return true;
     return newReleaseMovies.every((movie) => loadedImageIds.has(movie.id));

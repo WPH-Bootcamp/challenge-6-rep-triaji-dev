@@ -1,6 +1,6 @@
 import { cn } from '../../lib/utils';
 import React from 'react';
-import type { ButtonProps } from './Button.interface';
+import type { ButtonProps } from './types/Button.interface';
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   variant = 'primary',

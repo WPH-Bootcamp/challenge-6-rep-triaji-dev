@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { DetailPageSkeleton } from '../components/container/DetailPageSkeleton';
+import { DetailPageSkeleton } from '../components/container/skeleton/DetailPageSkeleton';
 import {
   useMovieDetails,
   useMovieCredits,

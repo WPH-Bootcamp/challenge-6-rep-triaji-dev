@@ -1,5 +1,5 @@
 import React from 'react';
-import Skeleton from '../ui/Skeleton';
+import Skeleton from '../../ui/Skeleton';
 
 interface MovieCardSkeletonProps {
   variant?: 'compact' | 'default';
