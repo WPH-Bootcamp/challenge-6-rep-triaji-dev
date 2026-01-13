@@ -1,13 +1,13 @@
 import React from 'react';
 import { getImageUrl } from '../../api/movies';
+import { User } from 'lucide-react';
+import Skeleton from '../ui/Skeleton';
 
 interface CastCardProps {
   name: string;
   role: string;
   profilePath: string | null | undefined;
 }
-
-import Skeleton from '../ui/Skeleton';
 
 export const CastCard: React.FC<CastCardProps> = ({ name, role, profilePath }) => {
  const [isImageLoaded, setIsImageLoaded] = React.useState(false);
@@ -25,13 +25,12 @@ export const CastCard: React.FC<CastCardProps> = ({ name, role, profilePath }) =
             />
          </div>
        ) : (
-         <img
-           src='/icons/icon-photo-blank.svg'
-           alt='No photo available'
-           className='w-[50px] h-[75px] md:w-[69px] md:h-[104px] object-cover rounded-lg shrink-0'
-         />
+         <div className='w-[50px] h-[75px] md:w-[69px] md:h-[104px] bg-neutral-900/20 rounded-lg shrink-0 flex items-center justify-center'>
+            <User className='w-6 h-6 md:w-12 md:h-12 text-neutral-500' />
+         </div>
        )}
        <div className='flex flex-col justify-center px-3 py-1 md:p-4'>
+
          <div className='font-semibold text-xs md:text-sm lg:text-md text-white'>
            {name}
          </div>

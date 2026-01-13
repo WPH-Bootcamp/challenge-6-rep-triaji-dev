@@ -32,7 +32,7 @@ const SearchPage: React.FC = (): React.ReactElement => {
   return (
     <div
       className={`px-4 sm:px-15 lg:px-25 xl:px-35 mt-20 min-h-[80vh] flex justify-center ${
-        showNotFound ? 'items-center' : 'items-start'
+        showNotFound || loading ? 'items-center' : 'items-start'
       }`}
     >
       {loading && <LoadingSpinner className="h-60" />}

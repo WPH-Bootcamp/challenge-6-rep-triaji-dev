@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { Search, X, Menu, ArrowRight } from 'lucide-react';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 
@@ -16,6 +16,7 @@ const Navbar: React.FC<NavbarProps> = () => {
   const [searchValue, setSearchValue] = useState('');
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,6 +61,20 @@ const Navbar: React.FC<NavbarProps> = () => {
     }
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    
+    if (path === '/' && location.pathname === '/') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    } else {
+      navigate(path);
+    }
+  };
+
   return (
     <>
       <nav
@@ -74,18 +89,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               className={`flex space-x-2 items-center hover:opacity-80 transition-all duration-300 ${
                 searchOpen ? 'opacity-0 invisible md:opacity-100 md:visible' : 'opacity-100 visible'
               }`}
-              onClick={(e) => {
-                if (window.location.pathname === '/') {
-                  e.preventDefault();
-                  window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth',
-                  });
-                } else {
-                  e.preventDefault();
-                  navigate('/');
-                }
-              }}
+              onClick={(e) => handleNavClick(e, '/')}
             >
               <img
                 src='/icons/logo-navbar.svg'
@@ -100,28 +104,14 @@ const Navbar: React.FC<NavbarProps> = () => {
               <a
                 href='/'
                 className='hover:text-neutral-400 transition-colors'
-                onClick={(e) => {
-                  if (window.location.pathname === '/') {
-                    e.preventDefault();
-                    window.scrollTo({
-                      top: 0,
-                      behavior: 'smooth',
-                    });
-                  } else {
-                    e.preventDefault();
-                    navigate('/');
-                  }
-                }}
+                onClick={(e) => handleNavClick(e, '/')}
               >
                 Home
               </a>
               <a
-                href='#'
+                href='/favorites'
                 className='hover:text-neutral-400 transition-colors'
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/favorites');
-                }}
+                onClick={(e) => handleNavClick(e, '/favorites')}
               >
                 Favorites
               </a>
@@ -130,17 +120,13 @@ const Navbar: React.FC<NavbarProps> = () => {
           <div className='flex items-center space-x-2'>
             <form
               onSubmit={handleSearch}
-              className='relative max-w-60 flex items-center justify-end backdrop-blur-lg rounded-md'
+              className='relative max-w-60 flex items-center justify-end backdrop-blur-lg rounded-2xl'
             >
-              <img
-                src='/icons/icon-search.svg'
-                alt='search'
-                className='absolute left-4'
-              />
+              <Search className='absolute left-4 w-5 h-5 text-neutral-500 hidden md:block' />
               <Input
                 name='search'
                 placeholder='Search Movie'
-                className='hidden md:block pl-12 w-full py-2 px-4 rounded-md bg-neutral-800/60  focus:outline-none focus:ring-2 focus:ring-neutral-300 text-neutral-500 h-14 placeholder:text-sm md:placeholder:text-base'
+                className='hidden md:block pl-12 w-full py-2 px-4 rounded-2xl bg-neutral-800/60  focus:outline-none text-neutral-500 h-14 placeholder:text-sm md:placeholder:text-base'
                 value={searchValue}
                 onChange={handleInputChange}
                 ref={searchInputRef}
@@ -148,17 +134,13 @@ const Navbar: React.FC<NavbarProps> = () => {
               {searchValue && (
                 <Button
                   variant='icon'
-                  className='absolute right-4 focus:outline-none'
+                  className='absolute right-4 focus:outline-none hidden md:flex'
                   onClick={handleClear}
                   type='button'
                   tabIndex={-1}
                   aria-label='Clear search input'
                 >
-                  <img
-                    src='/icons/icon-search-clear.svg'
-                    alt='Clear'
-                    className='h-5 w-5 opacity-25'
-                  />
+                  <X className='h-5 w-5 opacity-25' />
                 </Button>
               )}
             </form>
@@ -184,11 +166,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                     onClick={handleClear}
                     type='button'
                   >
-                    <img
-                      src='/icons/icon-search-clear.svg'
-                      alt='Clear'
-                      className='h-4 w-4 opacity-50'
-                    />
+                    <X className='h-4 w-4 opacity-50' />
                   </Button>
                 )}
                  <Button
@@ -200,11 +178,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                   }}
                   type='button'
                 >
-                  <img
-                    src='/icons/icon-close.svg'
-                    alt='Close'
-                    className='h-3 w-3 opacity-70'
-                  />
+                  <ArrowRight className='h-5 w-5 opacity-70' />
                 </Button>
               </form>
             </div>
@@ -217,11 +191,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               aria-label='Open search'
               onClick={() => setSearchOpen(true)}
             >
-              <img
-                src='/icons/icon-search.svg'
-                alt='Open search'
-                className='h-5 w-5 md:h-6 md:w-6'
-              />
+              <Search className='h-5 w-5 md:h-6 md:w-6' />
             </Button>
             <Button
               variant='icon'
@@ -229,11 +199,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               aria-label='Open menu'
               onClick={() => setMenuOpen(true)}
             >
-              <img
-                src='/icons/icon-hamburger.svg'
-                alt='Open menu'
-                className='h-5 w-5 md:h-6 md:w-6'
-              />
+              <Menu className='h-5 w-5 md:h-6 md:w-6' />
             </Button>
           </div>
         </div>
@@ -258,36 +224,19 @@ const Navbar: React.FC<NavbarProps> = () => {
             aria-label='Close menu'
             onClick={() => setMenuOpen(false)}
           >
-            <img
-              src='/icons/icon-close.svg'
-              alt='Close menu'
-              className='h-4 w-4 md:h-5 md:w-5'
-            />
+            <X className='h-5 w-5' />
           </Button>
         </div>
         <nav className='flex flex-col gap-8 text-md'>
           <a
             href='/'
-            onClick={(e) => {
-              setMenuOpen(false);
-              if (window.location.pathname === '/') {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              } else {
-                e.preventDefault();
-                navigate('/');
-              }
-            }}
+            onClick={(e) => handleNavClick(e, '/')}
           >
             Home
           </a>
           <a
-            href='#'
-            onClick={(e) => {
-              e.preventDefault();
-              setMenuOpen(false);
-              navigate('/favorites');
-            }}
+            href='/favorites'
+            onClick={(e) => handleNavClick(e, '/favorites')}
           >
             Favorites
           </a>

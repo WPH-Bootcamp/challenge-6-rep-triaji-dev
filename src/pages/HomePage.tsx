@@ -11,6 +11,7 @@ import { useTrailer } from '../hooks/useTrailer';
 import { VideoModal } from '../components/ui/VideoModal';
 import MovieCardSkeleton from '../components/container/skeleton/MovieCardSkeleton';
 import { HeroSectionSkeleton } from '../components/container/skeleton/HeroSectionSkeleton';
+import ErrorState from '../components/ui/ErrorState';
 
 export const HomePage: React.FC = (): React.ReactElement => {
   const { 
@@ -73,7 +74,7 @@ export const HomePage: React.FC = (): React.ReactElement => {
     }
   }, [inView, fetchNextPage, hasNextPage, allImagesLoaded]);
 
-  if (error) return <div className="bg-black min-h-screen text-white p-8">Error: {error instanceof Error ? error.message : 'Unknown error'}</div>;
+  if (error) return <ErrorState message={error instanceof Error ? error.message : 'Unknown error'} onRetry={() => window.location.reload()} className="min-h-screen" />;
 
   return (
     <div className='mx-auto bg-black min-h-screen text-white pb-20'>
