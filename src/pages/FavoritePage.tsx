@@ -21,7 +21,7 @@ const FavoritePage: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <div className='px-4 sm:px-15 lg:px-25 xl:px-35 mt-30 min-h-[80vh]'>
+    <div className='px-4 sm:px-15 lg:px-25 xl:px-35 mt-30 min-h-[70vh]'>
       <div className='text-2xl md:text-3xl font-bold'>Favorites</div>
       {loading && <LoadingSpinner className="h-60" />}
       {showNotFound && (
@@ -29,7 +29,7 @@ const FavoritePage: React.FC = (): React.ReactElement => {
           <img
             src='/icons/data-not-found.svg'
             alt='No Favorite Movies'
-            className='w-[200px] h-[200px] mb-6 mt-40'
+            className='w-[200px] h-[200px] mb-6 mt-30'
           />
           <div className='text-md font-semibold text-white mb-2'>
             Data Empty
