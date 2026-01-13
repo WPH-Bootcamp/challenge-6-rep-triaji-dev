@@ -1,5 +1,7 @@
 import { toast } from 'sonner';
-import { X } from 'lucide-react';
+import { X, Check } from 'lucide-react';
+
+
 import { useFavoritesStore } from '../store/useFavoritesStore';
 import type { Movie } from '../types/movie';
 
@@ -32,7 +34,7 @@ export const useFavoriteToggle = ({
             className='w-full bg-black/60 backdrop-blur-md rounded-md flex items-center justify-center gap-3 px-4 py-3 shadow-lg border border-white/10 translate-y-30'
             style={{ width: `${width}px` }}
           >
-            <div className='w-6 h-6 rounded-full bg-neutral-800 flex items-center justify-center shrink-0'>
+            <div className='w-6 h-6 rounded-full bg-red-500 flex items-center justify-center shrink-0'>
               <X className='w-4 h-4 text-white' />
             </div>
             <p className='text-white text-sm font-medium text-center'>
@@ -51,11 +53,9 @@ export const useFavoriteToggle = ({
             className='w-full bg-black/60 backdrop-blur-md rounded-md flex items-center justify-center gap-3 px-4 py-3 shadow-lg border border-white/10 translate-y-30'
             style={{ width: `${width}px` }}
           >
-            <img
-              src='/icons/icon-check.svg'
-              alt='success'
-              className='w-6 h-6'
-            />
+            <div className='w-6 h-6 rounded-full bg-white flex items-center justify-center shrink-0'>
+              <Check className='w-4 h-4 text-neutral-800' />
+            </div>
             <p className='text-white text-sm font-medium text-center'>
               Success Add to Favorites
             </p>
