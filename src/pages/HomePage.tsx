@@ -9,7 +9,7 @@ import LoadingSpinner from '../components/ui/LoadingSpinner';
 import { useTrailer } from '../hooks/useTrailer';
 import { VideoModal } from '../components/ui/VideoModal';
 
-export const HomePage: React.FC = () => {
+export const HomePage: React.FC = (): React.ReactElement => {
   const { 
     data: trendingData, 
     isLoading: trendingLoading, 
@@ -52,7 +52,7 @@ export const HomePage: React.FC = () => {
       {/* Hero Section */}
       {trendingMovies.length > 0 && (
         <HeroSlider items={trendingMovies} paused={isModalOpen}>
-          {(movie) => <HeroSection movie={movie} onWatchTrailer={() => handleWatchTrailer(movie.id)} />}
+          {(movie) => <HeroSection movie={movie} onWatchTrailer={handleWatchTrailer} />}
         </HeroSlider>
       )}
 
@@ -78,7 +78,7 @@ export const HomePage: React.FC = () => {
                 key={`new-${movie.id}`} 
                 movie={movie} 
                 size='large' 
-                onWatchTrailer={() => handleWatchTrailer(movie.id)}
+                onWatchTrailer={handleWatchTrailer}
                 trailerAvailable={!trailerLoading}
               />
             ))}

@@ -20,7 +20,7 @@ export const useSlider = ({
     setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % itemsLength);
       setTransitioning(false);
-    }, 500); // Half of the duration to fade out/in
+    }, 500); 
   }, [itemsLength]);
 
   useEffect(() => {

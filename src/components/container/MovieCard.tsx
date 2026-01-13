@@ -6,6 +6,7 @@ import { IoPlayCircle } from 'react-icons/io5';
 import { useFavoriteToggle } from '../../hooks/useFavoriteToggle';
 import FavoriteButton from '../ui/FavoriteButton';
 
+// TODO: refactor using Button.tsx
 const TrailerButton: React.FC<{
   onClick?: () => void;
   disabled: boolean;
@@ -29,15 +30,17 @@ const MovieCard: React.FC<MovieCardProps> = ({
   trendingRank = 0,
   onWatchTrailer,
   trailerAvailable = true,
-  onRemoveFromFavorites,
   children,
-}) => {
+}): React.ReactElement => {
   const navigate = useNavigate();
   const { isFavorite, handleFavoriteToggle } = useFavoriteToggle({
     movieId: movie.id,
     movieData: movie,
-    onRemoveFromFavorites,
   });
+  
+  const handleWatchTrailerClick = React.useCallback(() => {
+    onWatchTrailer?.(movie.id);
+  }, [onWatchTrailer, movie.id]);
 
   const sizeClasses = {
     small: 'text-xs',
@@ -132,7 +135,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
           </div>
           <div className='hidden lg:flex items-center gap-4 mt-1'>
             <TrailerButton
-              onClick={onWatchTrailer}
+              onClick={handleWatchTrailerClick}
               disabled={!trailerAvailable}
               className='shrink-0'
             />
@@ -145,7 +148,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
       <div className='lg:hidden mt-8'>
         <div className='flex gap-3 items-center'>
           <TrailerButton
-            onClick={onWatchTrailer}
+            onClick={handleWatchTrailerClick}
             disabled={!trailerAvailable}
             className='flex-1'
           />
@@ -161,4 +164,4 @@ const MovieCard: React.FC<MovieCardProps> = ({
   );
 };
 
-export default MovieCard;
+export default React.memo(MovieCard);

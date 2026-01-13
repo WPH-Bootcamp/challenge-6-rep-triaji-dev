@@ -1,36 +1,28 @@
-import { useState, useEffect } from 'react';
-import type { Movie } from '../types/movie';
 import { toast } from 'sonner';
+import { useFavoritesStore } from '../store/useFavoritesStore';
+import type { Movie } from '../types/movie';
 
 interface UseFavoriteToggleProps {
   movieId: number;
   movieData: Movie;
-  onRemoveFromFavorites?: (id: number) => void;
+}
+
+interface UseFavoriteToggleReturn {
+  isFavorite: boolean;
+  handleFavoriteToggle: () => void;
 }
 
 export const useFavoriteToggle = ({
   movieId,
   movieData,
-  onRemoveFromFavorites,
-}: UseFavoriteToggleProps) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    const exists = favorites.some((fav: Movie) => fav.id === movieId);
-    setIsFavorite(exists);
-  }, [movieId]);
+}: UseFavoriteToggleProps): UseFavoriteToggleReturn => {
+  const isFavorite = useFavoritesStore((state) => state.isFavorite(movieId));
+  const addFavorite = useFavoritesStore((state) => state.addFavorite);
+  const removeFavorite = useFavoritesStore((state) => state.removeFavorite);
 
   const handleFavoriteToggle = () => {
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    
     if (isFavorite) {
-      const newFavorites = favorites.filter((fav: Movie) => fav.id !== movieId);
-      localStorage.setItem('favorites', JSON.stringify(newFavorites));
-      setIsFavorite(false);
-      if (onRemoveFromFavorites) {
-        onRemoveFromFavorites(movieId);
-      }
+      removeFavorite(movieId);
       toast.custom(() => {
         const isMobile = window.innerWidth < 640;
         const width = isMobile ? 300 : 520;
@@ -51,9 +43,7 @@ export const useFavoriteToggle = ({
         );
       }, { duration: 2000 });
     } else {
-      const newFavorites = [...favorites, movieData];
-      localStorage.setItem('favorites', JSON.stringify(newFavorites));
-      setIsFavorite(true);
+      addFavorite(movieData);
       toast.custom(() => {
         const isMobile = window.innerWidth < 640;
         const width = isMobile ? 300 : 520;

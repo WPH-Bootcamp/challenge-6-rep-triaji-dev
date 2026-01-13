@@ -6,8 +6,8 @@ import { VideoModal } from '../components/ui/VideoModal';
 import { useTrailer } from '../hooks/useTrailer';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 
-const FavoritePage: React.FC = () => {
-  const { favoriteMovies, loading, handleRemoveFromFavorites } = useFavorite();
+const FavoritePage: React.FC = (): React.ReactElement => {
+  const { favoriteMovies, loading } = useFavorite();
   const [visibleCount, setVisibleCount] = useState(5);
   const { trailerKey, isModalOpen, isLoading, handleWatchTrailer, closeModal } =
     useTrailer();
@@ -45,11 +45,8 @@ const FavoritePage: React.FC = () => {
                 key={movie.id}
                 movie={movie}
                 variant='large'
-                onWatchTrailer={() => handleWatchTrailer(movie.id)}
+                onWatchTrailer={handleWatchTrailer}
                 trailerAvailable={!isLoading}
-                onRemoveFromFavorites={() =>
-                  handleRemoveFromFavorites(movie.id)
-                }
               />
             ))}
           </div>

@@ -1,12 +1,20 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { getMovieTrailer } from '../api/movies';
 
-export const useTrailer = () => {
+interface UseTrailerReturn {
+  handleWatchTrailer: (movieId: number, key?: string) => Promise<void>;
+  isLoading: boolean;
+  trailerKey: string | null;
+  isModalOpen: boolean;
+  closeModal: () => void;
+}
+
+export const useTrailer = (): UseTrailerReturn => {
   const [trailerKey, setTrailerKey] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleWatchTrailer = async (movieId: number, key?: string) => {
+  const handleWatchTrailer = useCallback(async (movieId: number, key?: string) => {
     if (key) {
       setTrailerKey(key);
       setIsModalOpen(true);
@@ -20,7 +28,7 @@ export const useTrailer = () => {
         setTrailerKey(fetchedKey);
         setIsModalOpen(true);
       } else {
-        // Handle no trailer found case if needed, e.g. toast
+        // TODO: Handle no trailer found case using toast
         alert('No trailer available for this movie.');
       }
     } catch (error) {
@@ -29,12 +37,12 @@ export const useTrailer = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setIsModalOpen(false);
     setTrailerKey(null);
-  };
+  }, []);
 
   return {
     handleWatchTrailer,

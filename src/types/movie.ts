@@ -30,8 +30,7 @@ export interface MovieCardProps {
   variant?: MovieCardVariant;
   size?: MovieCardSize;
   trendingRank?: number;
-  onWatchTrailer?: () => void;
+  onWatchTrailer?: (id: number) => void;
   trailerAvailable?: boolean;
-  onRemoveFromFavorites?: () => void;
   children?: React.ReactNode;
 }

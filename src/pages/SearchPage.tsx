@@ -6,7 +6,7 @@ import { VideoModal } from '../components/ui/VideoModal';
 import { useTrailer } from '../hooks/useTrailer';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 
-const SearchPage: React.FC = () => {
+const SearchPage: React.FC = (): React.ReactElement => {
   const {
     searchResults,
     loading,
@@ -60,7 +60,7 @@ const SearchPage: React.FC = () => {
                 key={`${movie.id}-${movie.original_title}`}
                 movie={movie}
                 variant='large'
-                onWatchTrailer={() => handleWatchTrailer(movie.id)}
+                onWatchTrailer={handleWatchTrailer}
                 trailerAvailable={!isLoading}
               />
             ))}
