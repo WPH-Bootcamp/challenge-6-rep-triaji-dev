@@ -1,4 +1,5 @@
 import React, { useMemo, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { useTrendingMovies, useNewReleaseMoviesInfinite } from '../hooks/useMovies';
 import { getImageUrl } from '../api/movies';
 import Button from '../components/ui/Button';
@@ -43,11 +44,35 @@ export const HomePage: React.FC = (): React.ReactElement => {
     return newReleaseData?.pages.flatMap((page) => page.results) || [];
   }, [newReleaseData]);
 
+  const [loadedImageIds, setLoadedImageIds] = React.useState<Set<number>>(new Set());
+
+  const handleImageLoad = React.useCallback((id: number) => {
+    setLoadedImageIds((prev) => {
+      const newSet = new Set(prev);
+      newSet.add(id);
+      return newSet;
+    });
+  }, []);
+
+  // Check if all displayed new release movies have loaded their images
+  const allImagesLoaded = React.useMemo(() => {
+    if (newReleaseMovies.length === 0) return true;
+    return newReleaseMovies.every((movie) => loadedImageIds.has(movie.id));
+  }, [newReleaseMovies, loadedImageIds]);
+
   const error = trendingError || newReleaseError;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    if (inView && hasNextPage && allImagesLoaded) {
+      fetchNextPage();
+    }
+  }, [inView, fetchNextPage, hasNextPage, allImagesLoaded]);
 
   if (error) return <div className="bg-black min-h-screen text-white p-8">Error: {error instanceof Error ? error.message : 'Unknown error'}</div>;
 
@@ -100,6 +125,7 @@ export const HomePage: React.FC = (): React.ReactElement => {
                 size='large' 
                 onWatchTrailer={handleWatchTrailer}
                 trailerAvailable={!trailerLoading}
+                onImageLoad={handleImageLoad}
               />
             ))}
             {(newReleaseLoading || isFetchingNextPage) && (
@@ -109,23 +135,28 @@ export const HomePage: React.FC = (): React.ReactElement => {
             )}
           </div>
           {hasNextPage && (
-            <div
-              className='w-full h-[150px] md:h-[300px] absolute bottom-0 left-0 bg-linear-to-t from-black via-black/80 to-transparent flex items-center justify-center z-50 transition-all duration-300 hover:from-black/90 hover:via-black/90 active:from-black active:via-black/95 cursor-pointer'
-              onClick={() => {
-                fetchNextPage();
-              }}
-            >
-              <Button
-                variant='secondary'
-                className='translate-y-5 md:translate-y-10 shadow-2xl transition-transform duration-300 hover:scale-105 active:scale-95'
-                disabled={isFetchingNextPage}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  fetchNextPage();
+            <div>
+              <div
+                className='w-full h-[150px] md:h-[400px] absolute bottom-10 left-0 bg-linear-to-t from-black via-black/80 to-transparent flex items-center justify-center z-50 transition-all duration-300 hover:from-black/90 hover:via-black/90 active:from-black active:via-black/95'
+                onClick={() => {
+                   if (allImagesLoaded) fetchNextPage();
                 }}
               >
-                {isFetchingNextPage ? 'Loading...' : 'Load More'}
-              </Button>
+                <Button
+                  variant='secondary'
+                  className='translate-y-5 md:translate-y-10 shadow-2xl transition-transform duration-300 hover:scale-105 active:scale-95 disabled:scale-100 disabled:opacity-90 disabled:cursor-not-allowed'
+                  disabled={isFetchingNextPage || !allImagesLoaded}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (allImagesLoaded) fetchNextPage();
+                  }}
+                >
+                  {isFetchingNextPage ? 'Loading...' : !allImagesLoaded ? 'Loading...' : 'Load More'}
+                </Button>
+              </div>
+              <div ref={ref} className='w-full h-20 flex items-center justify-center p-4'>
+                {(isFetchingNextPage || !allImagesLoaded) && <MovieCardSkeleton variant="compact" />}
+              </div>
             </div>
           )}
         </div>

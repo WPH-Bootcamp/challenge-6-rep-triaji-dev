@@ -66,14 +66,14 @@ const SearchPage: React.FC = (): React.ReactElement => {
             ))}
           </div>
           {hasMoreResults && (
-            <div className='w-full flex items-center justify-center mt-6'>
+            <div className='w-full flex items-center justify-center mb-8'>
               <Button
                 variant='secondary'
                 className='shadow-2xl'
                 onClick={() => loadMoreResults()}
                 disabled={isFetchingNextPage}
               >
-                {isFetchingNextPage ? 'Loading more...' : 'Load More'}
+                {isFetchingNextPage ? 'Loading...' : 'Load More'}
               </Button>
             </div>
           )}

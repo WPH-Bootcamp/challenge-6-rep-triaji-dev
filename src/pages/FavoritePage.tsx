@@ -57,14 +57,14 @@ const FavoritePage: React.FC = (): React.ReactElement => {
             ))}
           </div>
           {visibleCount < favoriteMovies.length && (
-            <div className='w-full flex items-center justify-center mt-6'>
+            <div className='w-full flex items-center justify-center mb-8'>
               <Button
                 variant='secondary'
                 className='shadow-2xl'
                 onClick={handleLoadMore}
                 disabled={loading}
               >
-                Load More
+                {loading ? 'Loading...' : 'Load More'}
               </Button>
             </div>
           )}

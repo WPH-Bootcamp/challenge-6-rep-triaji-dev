@@ -32,5 +32,6 @@ export interface MovieCardProps {
   trendingRank?: number;
   onWatchTrailer?: (id: number) => void;
   trailerAvailable?: boolean;
+  onImageLoad?: (id: number) => void;
   children?: React.ReactNode;
 }

@@ -27,13 +27,13 @@ const Footer: React.FC = () => {
             <img
               src='/icons/logo-navbar.svg'
               alt='logo'
-              className='h-8 md:scale-110'
+              className='h-7 md:scale-105'
             />
-            <div className='text-[18px] md:text-[30px] font-semibold'>
+            <div className='text-lg md:text-xl font-semibold'>
               Movie
             </div>
           </Link>
-          <div className='mt-4 md:mt-0 text-xs md:text-sm text-neutral-600'>
+          <div className='mt-4 md:mt-0 text-xs md:text-sm text-neutral-600 flex items-center justify-start'>
             Copyright ©2025 Movie Explorer
           </div>
         </div>

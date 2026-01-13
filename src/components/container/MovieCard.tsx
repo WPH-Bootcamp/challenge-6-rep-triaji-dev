@@ -17,6 +17,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
   trendingRank = 0,
   onWatchTrailer,
   trailerAvailable = true,
+  onImageLoad,
   children,
 }): React.ReactElement => {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
 
   if (variant === 'compact') {
     return (
-      <div className='relative group cursor-pointer' onClick={handleClick}>
+      <div className={`relative group ${!isImageLoaded ? 'cursor-default pointer-events-none' : 'cursor-pointer'}`} onClick={!isImageLoaded ? undefined : handleClick}>
         <div className='relative overflow-hidden rounded-lg aspect-2/3 mb-2 bg-neutral-800'>
           {!isImageLoaded && <Skeleton className='absolute inset-0 w-full h-full rounded-lg z-10' />}
           <img
@@ -53,7 +54,14 @@ const MovieCard: React.FC<MovieCardProps> = ({
               !isImageLoaded ? 'opacity-0' : 'opacity-100'
             }`}
             loading='lazy'
-            onLoad={() => setIsImageLoaded(true)}
+            onLoad={() => {
+              setIsImageLoaded(true);
+              onImageLoad?.(movie.id);
+            }}
+            onError={() => {
+              setIsImageLoaded(true);
+              onImageLoad?.(movie.id);
+            }}
           />
         </div>
         {!isImageLoaded ? (
@@ -104,9 +112,9 @@ const MovieCard: React.FC<MovieCardProps> = ({
         {/* Poster */}
         <Link
           to={`/movie/${movie.id}`}
-          tabIndex={0}
+          tabIndex={!isImageLoaded ? -1 : 0}
           aria-label={`Go to details for ${movie.title}`}
-          className='shrink-0 mr-4 lg:mr-8'
+          className={`shrink-0 mr-4 lg:mr-8 ${!isImageLoaded ? 'pointer-events-none cursor-default' : ''}`}
         >
           <div className="relative w-32 h-44 lg:w-45 lg:h-67.5 rounded-sm lg:rounded-md bg-neutral-800 shadow-xl overflow-hidden">
              {!isImageLoaded && <Skeleton className='absolute inset-0 w-full h-full z-10' />}
@@ -120,7 +128,14 @@ const MovieCard: React.FC<MovieCardProps> = ({
               className={`w-full h-full object-cover hover:opacity-80 transition-opacity duration-200 cursor-pointer ${
                  !isImageLoaded ? 'opacity-0' : 'opacity-100'
               }`}
-              onLoad={() => setIsImageLoaded(true)}
+              onLoad={() => {
+                setIsImageLoaded(true);
+                onImageLoad?.(movie.id);
+              }}
+              onError={() => {
+                setIsImageLoaded(true);
+                onImageLoad?.(movie.id);
+              }}
              />
           </div>
         </Link>
@@ -130,8 +145,9 @@ const MovieCard: React.FC<MovieCardProps> = ({
           <div className='flex-1 pr-0 lg:pr-45'>
             <Link
               to={`/movie/${movie.id}`}
-              tabIndex={0}
+              tabIndex={!isImageLoaded ? -1 : 0}
               aria-label={`Go to details for ${movie.title}`}
+              className={!isImageLoaded ? 'pointer-events-none cursor-default' : ''}
             >
               {!isImageLoaded ? (
                 <Skeleton className='h-8 w-1/2 mb-3 ' />
