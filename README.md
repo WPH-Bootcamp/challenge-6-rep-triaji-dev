@@ -1,3 +1,5 @@
+Deployed Link: https://movie-app-new-rho.vercel.app/
+
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/AmyZJj4N)
 # Challenge 6 - Slicing Figma Movie App with Tanstack Query
 
