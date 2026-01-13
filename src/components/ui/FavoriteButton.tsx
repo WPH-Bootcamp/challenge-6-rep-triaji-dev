@@ -1,4 +1,5 @@
 import React from 'react';
+import { Heart } from 'lucide-react';
 
 interface FavoriteButtonProps {
   isFavorite: boolean;
@@ -35,16 +36,17 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   return (
     <button
       aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+      title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       className={`${variantClasses[variant]} transition-colors duration-200 ${className}`}
       onClick={(e) => {
         e.stopPropagation();
         onClick();
       }}
     >
-      <img
-        src={isFavorite ? '/icons/icon-fav-on.svg' : '/icons/icon-fav-off.svg'}
-        alt={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-        className={`cursor-pointer ${iconSizeClasses[size]}`}
+      <Heart
+        className={`cursor-pointer transition-colors duration-200 ${iconSizeClasses[size]} ${
+          isFavorite ? 'fill-red-500 text-red-500' : 'fill-transparent text-white'
+        }`}
       />
     </button>
   );

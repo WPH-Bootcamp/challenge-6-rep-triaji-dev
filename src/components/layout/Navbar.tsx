@@ -134,18 +134,18 @@ const Navbar: React.FC<NavbarProps> = () => {
               {searchValue && (
                 <Button
                   variant='icon'
-                  className='absolute right-4 focus:outline-none hidden md:flex'
+                  className='absolute right-4 focus:outline-none hidden md:flex rounded-full bg-neutral-700/60'
                   onClick={handleClear}
                   type='button'
                   tabIndex={-1}
                   aria-label='Clear search input'
                 >
-                  <X className='h-5 w-5 opacity-25' />
+                  <X className='h-3 w-3 opacity-25' />
                 </Button>
               )}
             </form>
             <div
-              className={`absolute top-1/2 -translate-y-1/2 right-10 h-10 flex items-center transition-all duration-300 overflow-hidden ${
+              className={`absolute top-1/2 -translate-y-1/2 right-10 h-11 flex items-center transition-all duration-300 overflow-hidden ${
                 searchOpen ? 'w-[calc(100%-4rem)] opacity-100 z-50' : 'w-0 opacity-0'
               }`}
             >
@@ -162,11 +162,11 @@ const Navbar: React.FC<NavbarProps> = () => {
                  {searchValue && (
                   <Button
                     variant='icon'
-                    className='absolute right-8 top-1/2 transform -translate-y-1/2 focus:outline-none'
+                    className='absolute right-8 top-1/2 transform -translate-y-1/2 focus:outline-none rounded-full bg-neutral-700/60 mr-2'
                     onClick={handleClear}
                     type='button'
                   >
-                    <X className='h-4 w-4 opacity-50' />
+                    <X className='h-3 w-3 opacity-50' />
                   </Button>
                 )}
                  <Button
