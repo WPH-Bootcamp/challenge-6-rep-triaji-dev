@@ -7,15 +7,23 @@ interface CastCardProps {
   profilePath: string | null | undefined;
 }
 
+import Skeleton from '../ui/Skeleton';
+
 export const CastCard: React.FC<CastCardProps> = ({ name, role, profilePath }) => {
+ const [isImageLoaded, setIsImageLoaded] = React.useState(false);
+
  return (
-     <div className='flex rounded-lg overflow-hidden w-full md:w-[360px] h-auto md:h-[104px]'>
+     <div className='flex rounded-lg overflow-hidden w-full md:w-[360px] h-auto md:h-[104px] bg-neutral-900/10'>
        {profilePath ? (
-         <img
-           src={getImageUrl(profilePath)}
-           alt={name}
-           className='w-[50px] h-[75px] md:w-[69px] md:h-[104px] object-cover rounded-lg shrink-0'
-         />
+         <div className="relative w-[50px] h-[75px] md:w-[69px] md:h-[104px] shrink-0">
+            {!isImageLoaded && <Skeleton className='absolute inset-0 w-full h-full rounded-lg z-10' />}
+            <img
+            src={getImageUrl(profilePath)}
+            alt={name}
+            className={`w-full h-full object-cover rounded-lg transition-opacity duration-300 ${!isImageLoaded ? 'opacity-0' : 'opacity-100'}`}
+            onLoad={() => setIsImageLoaded(true)}
+            />
+         </div>
        ) : (
          <img
            src='/icons/icon-photo-blank.svg'

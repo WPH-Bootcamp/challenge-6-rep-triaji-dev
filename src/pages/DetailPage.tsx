@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
+import { DetailPageSkeleton } from '../components/container/DetailPageSkeleton';
 import {
   useMovieDetails,
   useMovieCredits,
@@ -13,15 +14,18 @@ import { VideoModal } from '../components/ui/VideoModal';
 import { CastCard } from '../components/container/CastCard';
 import InfoCard from '../components/ui/InfoCard';
 import { useTrailer } from '../hooks/useTrailer';
-import LoadingSpinner from '../components/ui/LoadingSpinner';
 import { useFavoriteToggle } from '../hooks/useFavoriteToggle';
 import FavoriteButton from '../components/ui/FavoriteButton';
+import Skeleton from '../components/ui/Skeleton';
 import { useScreenSize } from '../hooks/useScreenSize';
 import type { Movie } from '../types/movie';
 
 const DetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const movieId = Number(id);
+  
+  const [isBackdropLoaded, setIsBackdropLoaded] = React.useState(false);
+  const [isPosterLoaded, setIsPosterLoaded] = React.useState(false);
 
   const { data: movie, isLoading: loadingMovie, error: errorMovie } = useMovieDetails(movieId);
   const { data: credits, isLoading: loadingCredits } = useMovieCredits(movieId);
@@ -55,7 +59,7 @@ const DetailPage: React.FC = () => {
     });
   };
 
-  if (loadingMovie || loadingCredits) return <LoadingSpinner />;
+  if (loadingMovie || loadingCredits) return <DetailPageSkeleton />;
   if (!movie) return <div className='text-center py-20 bg-black text-white min-h-screen'>Movie not found.</div>;
   if (errorMovie) return <div className='text-center py-20 text-red-500 bg-black min-h-screen'>Error loading details</div>;
 
@@ -65,11 +69,15 @@ const DetailPage: React.FC = () => {
     <div className='min-h-screen bg-black text-white flex flex-col'>
       {/* Background Image */}
       <div className='relative w-full h-100 md:h-160 lg:h-200'>
+        {!isBackdropLoaded && <Skeleton className='absolute inset-0 w-full h-full bg-neutral-900 rounded-none z-10' />}
         <img
           src={getImageUrl(movie.backdrop_path, 'w1280')}
           alt={movie.title}
-          className='w-full h-full object-cover object-[center_top] md:object-[center_top] lg:object-[center_top] object-position-top-center'
+          className={`w-full h-full object-cover object-[center_top] md:object-[center_top] lg:object-[center_top] object-position-top-center transition-opacity duration-500 ${
+            !isBackdropLoaded ? 'opacity-0' : 'opacity-100'
+          }`}
           style={{ objectPosition: 'top center' }}
+          onLoad={() => setIsBackdropLoaded(true)}
         />
         <div className='absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent' />
       </div>
@@ -80,11 +88,15 @@ const DetailPage: React.FC = () => {
           <div className='grid grid-cols-[140px_1fr] sm:grid-cols-[200px_1fr] md:grid-cols-[280px_1fr] space-x-6 md:space-x-8'>
             {/* Poster */}
             <div className='row-span-2 md:col-span-1 mb-3'>
-              <div className='rounded-md md:rounded-xl overflow-hidden flex items-center shadow-2xl shrink-0'>
+              <div className='rounded-md md:rounded-xl overflow-hidden flex items-center shadow-2xl shrink-0 relative bg-neutral-800 aspect-2/3 w-[116px] h-[174px] md:w-[260px] md:h-[384px]'>
+                {!isPosterLoaded && <Skeleton className='absolute inset-0 w-full h-full z-10' />}
                 <img
                   src={getImageUrl(movie.poster_path)}
                   alt={movie.title}
-                  className='w-[116px] h-[174px] md:w-[260px] md:h-[384px] object-cover rounded-md md:rounded-xl'
+                  className={`w-full h-full object-cover rounded-md md:rounded-xl transition-opacity duration-300 ${
+                    !isPosterLoaded ? 'opacity-0' : 'opacity-100'
+                  }`}
+                  onLoad={() => setIsPosterLoaded(true)}
                 />
               </div>
             </div>

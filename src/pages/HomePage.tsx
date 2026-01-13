@@ -1,13 +1,15 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useTrendingMovies, useNewReleaseMoviesInfinite } from '../hooks/useMovies';
+import { getImageUrl } from '../api/movies';
 import Button from '../components/ui/Button';
 import { HeroSlider } from '../components/container/HeroSlider';
 import MovieCard from '../components/container/MovieCard';
 import { HeroSection } from '../components/container/HeroSection';
 import { Carousel } from '../components/container/Carousel';
-import LoadingSpinner from '../components/ui/LoadingSpinner';
 import { useTrailer } from '../hooks/useTrailer';
 import { VideoModal } from '../components/ui/VideoModal';
+import MovieCardSkeleton from '../components/container/MovieCardSkeleton';
+import { HeroSectionSkeleton } from '../components/container/HeroSectionSkeleton';
 
 export const HomePage: React.FC = (): React.ReactElement => {
   const { 
@@ -41,20 +43,28 @@ export const HomePage: React.FC = (): React.ReactElement => {
     return newReleaseData?.pages.flatMap((page) => page.results) || [];
   }, [newReleaseData]);
 
-  const loading = trendingLoading || newReleaseLoading;
   const error = trendingError || newReleaseError;
 
-  if (loading) return <LoadingSpinner />;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (error) return <div className="bg-black min-h-screen text-white p-8">Error: {error instanceof Error ? error.message : 'Unknown error'}</div>;
 
   return (
     <div className='mx-auto bg-black min-h-screen text-white pb-20'>
       {/* Hero Section */}
-      {trendingMovies.length > 0 && (
-        <HeroSlider items={trendingMovies} paused={isModalOpen}>
-          {(movie) => <HeroSection movie={movie} onWatchTrailer={handleWatchTrailer} />}
+      {trendingLoading ? (
+        <HeroSectionSkeleton />
+      ) : trendingMovies.length > 0 ? (
+        <HeroSlider 
+          items={trendingMovies} 
+          paused={isModalOpen}
+          getImageUrl={(movie) => getImageUrl(movie.backdrop_path, 'w1280')}
+        >
+          {(movie) => <HeroSection key={movie.id} movie={movie} onWatchTrailer={handleWatchTrailer} />}
         </HeroSlider>
-      )}
+      ) : null}
 
       {/* Trending Now */}
       <section className='px-4 sm:px-15 lg:px-25 xl:px-35 mb-8 md:mb-12'>
@@ -63,7 +73,17 @@ export const HomePage: React.FC = (): React.ReactElement => {
             Trending Now
           </h2>
         </div>
-        <Carousel movies={trendingMovies.slice(0, 20)} />
+        {trendingLoading ? (
+            <div className="flex gap-3 md:gap-4 overflow-hidden">
+                {[...Array(5)].map((_, i) => (
+                    <div key={i} className="shrink-0 w-[calc((100%-12px)/2)] md:w-[calc((100%-32px)/3)] lg:w-[calc((100%-48px)/4)] xl:w-[calc((100%-64px)/5)]">
+                        <MovieCardSkeleton variant="compact" />
+                    </div>
+                ))}
+            </div>
+        ) : (
+            <Carousel movies={trendingMovies.slice(0, 20)} />
+        )}
       </section>
 
       {/* New Release */}
@@ -82,6 +102,11 @@ export const HomePage: React.FC = (): React.ReactElement => {
                 trailerAvailable={!trailerLoading}
               />
             ))}
+            {(newReleaseLoading || isFetchingNextPage) && (
+                [...Array(10)].map((_, i) => (
+                    <MovieCardSkeleton key={`skeleton-${i}`} variant="compact" />
+                ))
+            )}
           </div>
           {hasNextPage && (
             <div

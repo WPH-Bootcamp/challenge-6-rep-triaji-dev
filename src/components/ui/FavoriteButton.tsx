@@ -29,7 +29,7 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
 
   const variantClasses = {
     circle: `flex items-center justify-center rounded-full border border-neutral-800 bg-neutral-950/60 shadow-lg ${sizeClasses[size]}`,
-    card: `flex items-center justify-center rounded-full bg-neutral-300/50 shadow-lg w-8 h-8`,
+    card: `flex items-center justify-center rounded-full bg-neutral-900/50 shadow-lg w-8 h-8`,
   };
 
   return (
