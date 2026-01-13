@@ -59,7 +59,7 @@ export const HomePage: React.FC = (): React.ReactElement => {
       {/* Trending Now */}
       <section className='px-4 sm:px-15 lg:px-25 xl:px-35 mb-8 md:mb-12 lg:mt-20'>
         <div className='flex items-center justify-between mb-4 md:mb-6 md:mt-40 lg:mt-0 '>
-          <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold pb-2 lg:pb-8'>
+          <h2 className='text-xl md:text-2xl lg:text-3xl font-bold pb-2 lg:pb-8'>
             Trending Now
           </h2>
         </div>
@@ -69,7 +69,7 @@ export const HomePage: React.FC = (): React.ReactElement => {
       {/* New Release */}
       <section className='px-4 sm:px-15 lg:px-25 xl:px-35'>
         <div className='relative'>
-          <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 pb-2 lg:pb-8'>
+          <h2 className='text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6 pb-2 lg:pb-8'>
             New Release
           </h2>
           <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4'>

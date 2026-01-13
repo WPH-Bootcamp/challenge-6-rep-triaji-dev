@@ -62,6 +62,14 @@ const MovieCard: React.FC<MovieCardProps> = ({
             <span>{trendingRank}</span>
           </div>
         )}
+        <FavoriteButton
+          isFavorite={isFavorite}
+          onClick={handleFavoriteToggle}
+          variant="card"
+          className={`absolute top-3 right-3 z-10 transition-opacity duration-300 ${
+            isFavorite ? 'opacity-100 ' : 'opacity-0 group-hover:opacity-100'
+          }`}
+        />
       </div>
     );
   }

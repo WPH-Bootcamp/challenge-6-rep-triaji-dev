@@ -25,10 +25,10 @@ export const HeroSection = ({ movie, onWatchTrailer }: HeroSectionProps) => {
         <div className='absolute top-80 sm:top-70 md:top-85 lg:top-120 left-0 z-20 w-full pb-8 px-4 sm:px-15 lg:px-25 xl:px-35 md:pb-20 text-white max-w-6xl'>
           <div className='flex flex-col h-full'>
             <div className='flex-1'>
-              <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold mb-3 drop-shadow-lg leading-tight'>
+              <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 drop-shadow-lg leading-tight'>
                 {movie.title}
               </h1>
-              <p className='text-base md:text-lg text-neutral-400 drop-shadow-md mb-6 leading-relaxed max-w-2xl line-clamp-4'>
+              <p className='text-sm md:text-lg text-neutral-400 drop-shadow-md mb-6 leading-relaxed max-w-2xl line-clamp-4'>
                 {movie.overview}
               </p>
             </div>
