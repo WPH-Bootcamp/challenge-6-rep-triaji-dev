@@ -1,13 +1,14 @@
+import { cn } from '../../lib/utils';
 import React from 'react';
 import type { ButtonProps } from './Button.interface';
 
-const Button: React.FC<ButtonProps> = ({
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   variant = 'primary',
   className = '',
   children,
   icon,
   ...props
-}) => {
+}, ref) => {
   const baseClasses =
     'rounded-full font-semibold transition-colors cursor-pointer flex items-center justify-center gap-2';
   
@@ -20,13 +21,16 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`${baseClasses} ${variantClasses[variant]} ${className}`}
+      ref={ref}
+      className={cn(baseClasses, variantClasses[variant], className)}
       {...props}
     >
       {children}
       {icon && <span className='flex items-center'>{icon}</span>}
     </button>
   );
-};
+});
+
+Button.displayName = 'Button';
 
 export default Button;

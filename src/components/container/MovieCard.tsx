@@ -77,7 +77,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
         {!isImageLoaded ? (
           <Skeleton className='h-5 w-1/2 mt-2 mb-2' />
         ) : (
-          <div className={`text-md text-neutral-400 mt-2 mb-2`}>
+          <div className={`text-md text-neutral-400 mt-2 mb-2 group-hover:opacity-50 transition-opacity duration-300`}>
             ⭐ {movie.vote_average.toFixed(1)}/10
           </div>
         )}
