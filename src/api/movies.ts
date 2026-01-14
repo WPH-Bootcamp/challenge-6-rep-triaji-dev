@@ -19,7 +19,6 @@ export const searchMovies = (
   query: string,
   page: number = 1
 ): Promise<MovieListResponse> => {
-  console.log('Searching movies with query:', query, 'page:', page);
   return tmdbApi
     .get(TMDB_ENDPOINTS.MOVIES.SEARCH, {
       params: {
@@ -29,7 +28,7 @@ export const searchMovies = (
       },
     })
     .then(({ data }) => {
-      console.log('Search response:', data);
+
       return data;
     })
     .catch((error) => {

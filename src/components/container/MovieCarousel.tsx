@@ -7,6 +7,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from '../ui/Carousel';
 
 interface CarouselProps {
@@ -17,7 +18,7 @@ export const Carousel: React.FC<CarouselProps> = ({ movies }) => {
   const total = Math.min(movies.length, 20);
   const items = movies.slice(0, total);
   
-  const [api, setApi] = React.useState<any>(); 
+  const [api, setApi] = React.useState<CarouselApi>(); 
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
   const [canScrollNext, setCanScrollNext] = React.useState(false);
 
