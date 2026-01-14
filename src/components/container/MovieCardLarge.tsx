@@ -25,8 +25,8 @@ const MovieCardLarge: React.FC<MovieCardProps> = ({
   const [isImageLoaded, setIsImageLoaded] = React.useState(false);
 
   const handleWatchTrailerClick = React.useCallback(() => {
-    onWatchTrailer?.(movie.id);
-  }, [onWatchTrailer, movie.id]);
+    onWatchTrailer?.(movie.id, trailerKey || undefined);
+  }, [onWatchTrailer, movie.id, trailerKey]);
 
   return (
     <div className='relative flex flex-col mb-0 lg:mb-16 mt-8 lg:mt-12 w-full border-b border-neutral-800 last:border-b-0 pb-4 lg:pb-12'>
