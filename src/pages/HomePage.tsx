@@ -1,6 +1,9 @@
 import React, { useMemo, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useTrendingMovies, useNewReleaseMoviesInfinite } from '../hooks/useMovies';
+import {
+  useTrendingMovies,
+  useNewReleaseMoviesInfinite,
+} from '../hooks/useMovies';
 import { getImageUrl } from '../api/movies';
 import Button from '../components/ui/Button';
 import { HeroSlider } from '../components/container/HeroSlider';
@@ -14,10 +17,10 @@ import { HeroSectionSkeleton } from '../components/container/skeleton/HeroSectio
 import ErrorState from '../components/ui/ErrorState';
 
 export const HomePage: React.FC = (): React.ReactElement => {
-  const { 
-    data: trendingData, 
-    isLoading: trendingLoading, 
-    error: trendingError 
+  const {
+    data: trendingData,
+    isLoading: trendingLoading,
+    error: trendingError,
   } = useTrendingMovies();
 
   const {
@@ -26,15 +29,15 @@ export const HomePage: React.FC = (): React.ReactElement => {
     hasNextPage,
     isFetchingNextPage,
     isLoading: newReleaseLoading,
-    error: newReleaseError
+    error: newReleaseError,
   } = useNewReleaseMoviesInfinite();
 
-  const { 
-    trailerKey, 
-    isModalOpen, 
-    isLoading: trailerLoading, 
-    handleWatchTrailer, 
-    closeModal 
+  const {
+    trailerKey,
+    isModalOpen,
+    isLoading: trailerLoading,
+    handleWatchTrailer,
+    closeModal,
   } = useTrailer();
 
   const trendingMovies = useMemo(() => {
@@ -45,7 +48,9 @@ export const HomePage: React.FC = (): React.ReactElement => {
     return newReleaseData?.pages.flatMap((page) => page.results) || [];
   }, [newReleaseData]);
 
-  const [loadedImageIds, setLoadedImageIds] = React.useState<Set<number>>(new Set());
+  const [loadedImageIds, setLoadedImageIds] = React.useState<Set<number>>(
+    new Set()
+  );
 
   const handleImageLoad = React.useCallback((id: number) => {
     setLoadedImageIds((prev) => {
@@ -74,86 +79,107 @@ export const HomePage: React.FC = (): React.ReactElement => {
     }
   }, [inView, fetchNextPage, hasNextPage, allImagesLoaded]);
 
-  if (error) return <ErrorState message={error instanceof Error ? error.message : 'Unknown error'} onRetry={() => window.location.reload()} className="min-h-screen" />;
+  if (error)
+    return (
+      <ErrorState
+        message={error instanceof Error ? error.message : 'Unknown error'}
+        onRetry={() => window.location.reload()}
+        className='min-h-screen'
+      />
+    );
 
   return (
-    <div className='mx-auto bg-black min-h-screen text-white pb-20 overflow-x-hidden'>
+    <div className='mx-auto min-h-screen overflow-x-hidden bg-black pb-20 text-white'>
       {/* Hero Section */}
       {trendingLoading ? (
         <HeroSectionSkeleton />
       ) : trendingMovies.length > 0 ? (
-        <HeroSlider 
-          items={trendingMovies} 
+        <HeroSlider
+          items={trendingMovies}
           paused={isModalOpen}
           getImageUrl={(movie) => getImageUrl(movie.backdrop_path, 'w1280')}
         >
-          {(movie) => <HeroSection key={movie.id} movie={movie} onWatchTrailer={handleWatchTrailer} />}
+          {(movie) => (
+            <HeroSection
+              key={movie.id}
+              movie={movie}
+              onWatchTrailer={handleWatchTrailer}
+            />
+          )}
         </HeroSlider>
       ) : null}
 
       {/* Trending Now */}
-      <section className='layout-px mb-8 md:mb-21 -mt-4 md:-mt-15.5 relative z-20'>
-        <h2 className='text-display-xs lg:text-display-lg font-bold mb-6 md:mb-10'>
+      <section className='layout-px relative z-20 -mt-4 mb-8 md:-mt-15.5 md:mb-21'>
+        <h2 className='text-display-xs lg:text-display-lg mb-6 font-bold md:mb-10'>
           Trending Now
         </h2>
         {trendingLoading ? (
-            <div className="flex gap-3 md:gap-4 overflow-hidden">
-                {[...Array(5)].map((_, i) => (
-                    <div key={i} className="shrink-0 w-[calc((100%-12px)/2)] md:w-[calc((100%-32px)/3)] lg:w-[calc((100%-48px)/4)] xl:w-[calc((100%-64px)/5)]">
-                        <MovieCardSkeleton variant="compact" />
-                    </div>
-                ))}
-            </div>
+          <div className='flex gap-3 overflow-hidden md:gap-4'>
+            {[...Array(5)].map((_, i) => (
+              <div
+                key={i}
+                className='w-[calc((100%-12px)/2)] shrink-0 md:w-[calc((100%-32px)/3)] lg:w-[calc((100%-48px)/4)] xl:w-[calc((100%-64px)/5)]'
+              >
+                <MovieCardSkeleton variant='compact' />
+              </div>
+            ))}
+          </div>
         ) : (
-            <Carousel movies={trendingMovies.slice(0, 20)} />
+          <Carousel movies={trendingMovies.slice(0, 20)} />
         )}
       </section>
 
       {/* New Release */}
       <section className='layout-px'>
         <div className='relative'>
-          <h2 className='text-display-xs lg:text-display-lg font-bold mb-6 md:mb-10'>
+          <h2 className='text-display-xs lg:text-display-lg mb-6 font-bold md:mb-10'>
             New Release
           </h2>
-          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 space-y-4 md:gap-4 md:space-y-4'>
+          <div className='grid grid-cols-2 gap-4 space-y-4 sm:grid-cols-2 md:grid-cols-3 md:gap-4 md:space-y-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6'>
             {newReleaseMovies.map((movie) => (
-              <MovieCard 
-                key={`new-${movie.id}`} 
-                movie={movie} 
-                size='large' 
+              <MovieCard
+                key={`new-${movie.id}`}
+                movie={movie}
+                size='large'
                 onWatchTrailer={handleWatchTrailer}
                 trailerAvailable={!trailerLoading}
                 onImageLoad={handleImageLoad}
               />
             ))}
-            {(newReleaseLoading || isFetchingNextPage) && (
-                [...Array(10)].map((_, i) => (
-                    <MovieCardSkeleton key={`skeleton-${i}`} variant="compact" />
-                ))
-            )}
+            {(newReleaseLoading || isFetchingNextPage) &&
+              [...Array(10)].map((_, i) => (
+                <MovieCardSkeleton key={`skeleton-${i}`} variant='compact' />
+              ))}
           </div>
           {hasNextPage && (
             <div>
               <div
-                className='w-full h-[150px] md:h-[400px] absolute bottom-10 left-0 bg-linear-to-t from-black via-black/80 to-transparent flex-center z-50 transition-all duration-300 hover:from-black/90 hover:via-black/90 active:from-black active:via-black/95'
+                className='flex-center absolute bottom-10 left-0 z-50 h-[150px] w-full bg-linear-to-t from-black via-black/80 to-transparent transition-all duration-300 hover:from-black/90 hover:via-black/90 active:from-black active:via-black/95 md:h-[400px]'
                 onClick={() => {
-                   if (allImagesLoaded) fetchNextPage();
+                  if (allImagesLoaded) fetchNextPage();
                 }}
               >
                 <Button
                   variant='secondary'
-                  className='translate-y-5 md:translate-y-10 shadow-2xl transition-transform duration-300 hover:scale-105 active:scale-95 disabled:scale-100 disabled:opacity-90 disabled:cursor-not-allowed'
+                  className='translate-y-5 shadow-2xl transition-transform duration-300 hover:scale-105 active:scale-95 disabled:scale-100 disabled:cursor-not-allowed disabled:opacity-90 md:translate-y-10'
                   disabled={isFetchingNextPage || !allImagesLoaded}
                   onClick={(e) => {
                     e.stopPropagation();
                     if (allImagesLoaded) fetchNextPage();
                   }}
                 >
-                  {isFetchingNextPage ? 'Loading...' : !allImagesLoaded ? 'Loading...' : 'Load More'}
+                  {isFetchingNextPage
+                    ? 'Loading...'
+                    : !allImagesLoaded
+                      ? 'Loading...'
+                      : 'Load More'}
                 </Button>
               </div>
-              <div ref={ref} className='w-full h-20 flex-center p-4'>
-                {(isFetchingNextPage || !allImagesLoaded) && <MovieCardSkeleton variant="compact" />}
+              <div ref={ref} className='flex-center h-20 w-full p-4'>
+                {(isFetchingNextPage || !allImagesLoaded) && (
+                  <MovieCardSkeleton variant='compact' />
+                )}
               </div>
             </div>
           )}
@@ -170,4 +196,3 @@ export const HomePage: React.FC = (): React.ReactElement => {
 };
 
 export default HomePage;
-
