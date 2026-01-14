@@ -37,6 +37,24 @@ export const searchMovies = (
     });
 };
 
+export const discoverMovies = (
+  params: { with_people?: string; page?: number }
+): Promise<MovieListResponse> => {
+  return tmdbApi
+    .get(TMDB_ENDPOINTS.MOVIES.DISCOVER, {
+      params: {
+        ...params,
+        include_adult: false,
+        sort_by: 'popularity.desc',
+      },
+    })
+    .then(({ data }) => data)
+    .catch((error) => {
+      console.error('Error discovering movies:', error);
+      throw error;
+    });
+};
+
 const FALLBACK_IMAGE = 'https://via.placeholder.com/180x270?text=No+Poster';
 
 export const getImageUrl = (

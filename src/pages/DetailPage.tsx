@@ -184,6 +184,7 @@ const DetailPage: React.FC = () => {
               {cast.map((member) => (
                 <CastCard
                   key={member.id}
+                  id={member.id}
                   name={member.name}
                   role={member.character}
                   profilePath={member.profile_path}
@@ -192,6 +193,7 @@ const DetailPage: React.FC = () => {
               {crew.map((member) => (
                 <CastCard
                   key={member.id}
+                  id={member.id}
                   name={member.name}
                   role={member.job}
                   profilePath={member.profile_path}

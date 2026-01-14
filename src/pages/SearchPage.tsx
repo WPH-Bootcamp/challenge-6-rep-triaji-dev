@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useSearch } from '../hooks/useSearch';
+import { useSearchParams } from 'react-router-dom';
 import MovieCard from '../components/container/MovieCard';
 import Button from '../components/ui/Button';
 import { VideoModal } from '../components/ui/VideoModal';
@@ -7,6 +8,7 @@ import { useTrailer } from '../hooks/useTrailer';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 
 const SearchPage: React.FC = (): React.ReactElement => {
+  const [searchParams] = useSearchParams();
   const {
     searchResults,
     loading,
@@ -54,6 +56,15 @@ const SearchPage: React.FC = (): React.ReactElement => {
       )}
       {filteredResults.length > 0 && (
         <div className='w-full flex flex-col items-center'>
+          <div className='w-full md:mb-2 mt-12'>
+            <h2 className='text-white text-xl md:text-2xl font-light'>
+              {searchParams.get('person_name') 
+                ? <>Movies featuring <span className="text-primary-500 font-semibold">"{searchParams.get('person_name')}"</span></>
+                : searchParams.get('q') 
+                  ? <>Search Result for <span className="text-primary-500 font-semibold">"{searchParams.get('q')}"</span></>
+                  : 'Discover Movies'}
+            </h2>
+          </div>
           <div className='w-full [&>*:last-child]:border-b-0'>
             {filteredResults.map((movie) => (
               <MovieCard

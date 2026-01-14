@@ -7,6 +7,7 @@ export const TMDB_ENDPOINTS = {
     DETAILS: (movieId: number) => `/movie/${movieId}`,
     CREDITS: (movieId: number) => `/movie/${movieId}/credits`,
     GENRES: '/genre/movie/list',
+    DISCOVER: '/discover/movie',
   },
   IMAGES: {
     BASE_URL: 'https://image.tmdb.org/t/p/',
