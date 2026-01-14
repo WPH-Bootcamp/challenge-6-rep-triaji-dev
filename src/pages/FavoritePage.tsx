@@ -22,7 +22,7 @@ const FavoritePage: React.FC = (): React.ReactElement => {
 
   return (
     <div className='px-4 sm:px-15 lg:px-25 xl:px-35 mt-30 min-h-[70vh]'>
-      <div className='text-2xl md:text-3xl font-bold'>Favorites</div>
+      <div className='text-display-xs md:text-display-md font-bold'>Favorites</div>
       {loading && <LoadingSpinner className="h-60" />}
       {showNotFound && (
         <div className='flex flex-col items-center justify-center'>

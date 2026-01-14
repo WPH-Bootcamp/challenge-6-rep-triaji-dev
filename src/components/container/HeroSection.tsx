@@ -25,7 +25,7 @@ export const HeroSection = ({ movie, onWatchTrailer }: HeroSectionProps) => {
         <div className='absolute top-80 sm:top-70 md:top-85 lg:top-120 left-0 z-20 w-full px-4 sm:px-15 lg:px-25 xl:px-35 text-white max-w-6xl'>
           <div className='flex flex-col h-full'>
             <div className='flex-1'>
-              <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 drop-shadow-lg leading-tight'>
+              <h1 className='text-display-xs sm:text-display-md md:text-display-lg lg:text-display-2xl font-bold mb-3 drop-shadow-lg leading-tight'>
                 {movie.title}
               </h1>
               <p className='text-sm md:text-lg text-neutral-400 drop-shadow-md mb-6 leading-relaxed max-w-2xl line-clamp-4'>
@@ -37,14 +37,14 @@ export const HeroSection = ({ movie, onWatchTrailer }: HeroSectionProps) => {
                 variant='primary'
                 icon={<IoPlayCircle size={24} />}
                 onClick={() => onWatchTrailer(movie.id)}
-                className='w-full md:w-auto text-base md:text-lg md:min-w-[230px] shrink-0'
+                className='w-full md:w-auto text-md md:text-lg md:min-w-[230px] shrink-0'
               >
                 Watch Trailer
               </Button>
               <Button
                 variant='secondary'
                 onClick={() => navigate(`/movie/${movie.id}`)}
-                className='w-full md:w-auto text-base md:text-lg md:min-w-[230px] shrink-0'
+                className='w-full md:w-auto text-md md:text-lg md:min-w-[230px] shrink-0'
               >
                 See Detail
               </Button>

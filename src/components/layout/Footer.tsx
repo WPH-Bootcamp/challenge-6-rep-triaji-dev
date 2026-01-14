@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
               alt='logo'
               className='h-7 md:scale-105'
             />
-            <div className='text-lg md:text-xl font-semibold'>
+            <div className='text-lg md:text-display-xs font-semibold'>
               Movie
             </div>
           </Link>

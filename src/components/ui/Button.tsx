@@ -22,7 +22,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     primary: 'bg-primary-300 hover:bg-primary-400 text-white px-6 py-2 h-11 lg:h-13 w-57.5 text-md',
     secondary:
       'bg-neutral-950 hover:bg-black border-1 border-neutral-800 px-6 py-2 h-11 lg:h-13 w-57.5 text-md',
-    icon: 'p-2 bg-transparent hover:opacity-60 transition-opacity ',
+    icon: 'bg-transparent hover:opacity-60 transition-opacity ',
   };
 
   return (

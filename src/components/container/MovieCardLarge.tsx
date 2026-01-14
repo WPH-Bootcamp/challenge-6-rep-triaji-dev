@@ -87,7 +87,7 @@ const MovieCardLarge: React.FC<MovieCardProps> = ({
               {!isImageLoaded ? (
                 <Skeleton className='h-8 w-1/2 mb-3 ' />
               ) : (
-                <h2 className='text-lg sm:text-xl md:text-2xl font-semibold text-white mb-2 md:mb-3 line-clamp-2 hover:text-neutral-400 transition-colors duration-200 cursor-pointer'>
+                <h2 className='text-lg sm:text-xl md:text-display-xs font-semibold text-white mb-2 md:mb-3 line-clamp-2 hover:text-neutral-400 transition-colors duration-200 cursor-pointer'>
                   {movie.title}
                 </h2>
               )}

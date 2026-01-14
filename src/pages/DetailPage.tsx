@@ -105,7 +105,7 @@ const DetailPage: React.FC = () => {
             <div className='md:col-span-2'>
               {/* Title */}
               <div className='mb-4'>
-                <h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold'>
+                <h1 className='text-xl sm:text-display-xs md:text-display-md lg:text-display-lg font-bold'>
                   {movie.title}
                 </h1>
                 <div className='flex items-center gap-2 text-sm md:text-md font-medium mt-4'>
@@ -167,7 +167,7 @@ const DetailPage: React.FC = () => {
 
           {/* Overview Section */}
           <div className='md:mt-8'>
-            <h2 className='text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mt-12'>
+            <h2 className='text-xl md:text-display-xs lg:text-display-md font-bold mb-4 md:mt-12'>
               Overview
             </h2>
             <p className='text-neutral-400 text-xs md:text-sm lg:text-md leading-relaxed'>
@@ -177,7 +177,7 @@ const DetailPage: React.FC = () => {
 
           {/* Cast & Crew */}
           <div className='mt-12'>
-            <h2 className='text-xl md:text-2xl lg:text-3xl font-bold mb-6'>
+            <h2 className='text-xl md:text-display-xs lg:text-display-md font-bold mb-6'>
               Cast & Crew
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>

@@ -2,29 +2,47 @@
 @import 'tailwindcss';
 @theme {
   /* Font Family */
-  --font-family-sans: 'Poppins', sans-serif;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
 
-  /* Font Sizes - Display */
-  --font-size-display-3xl: 3.75rem; /* 60px */
-  --font-size-display-2xl: 3rem; /* 48px */
-  --font-size-display-xl: 2.5rem; /* 40px */
-  --font-size-display-lg: 2.25rem; /* 36px */
-  --font-size-display-md: 2rem; /* 32px */
-  --font-size-display-sm: 1.75rem; /* 28px */
-  --font-size-display-xs: 1.5rem; /* 24px */
+  /* Text Sizes, Line Heights, and Letter Spacing */
+  --text-display-3xl: 3.75rem;
+  --text-display-3xl--line-height: 4.5rem;
 
-  /* Font Sizes - Text */
-  --font-size-xl: 1.25rem; /* 20px */
-  --font-size-lg: 1.125rem; /* 18px */
-  --font-size-md: 1rem; /* 16px */
-  --font-size-base: 1rem; /* 16px */
-  --font-size-sm: 0.875rem; /* 14px */
-  --font-size-xs: 0.75rem; /* 12px */
+  --text-display-2xl: 3rem;
+  --text-display-2xl--line-height: 3.75rem;
+  --text-display-2xl--letter-spacing: -0.02em;
 
-  /* Line Heights */
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
+  --text-display-xl: 2.5rem;
+  --text-display-xl--line-height: 3.5rem;
+  --text-display-xl--letter-spacing: -0.02em;
+
+  --text-display-lg: 2.25rem;
+  --text-display-lg--line-height: 3rem;
+  --text-display-lg--letter-spacing: -0.02em;
+
+  --text-display-md: 2rem;
+  --text-display-md--line-height: 2.875rem;
+
+  --text-display-sm: 1.75rem;
+  --text-display-sm--line-height: 2.375rem;
+
+  --text-display-xs: 1.5rem;
+  --text-display-xs--line-height: 2.25rem;
+
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 2.125rem;
+
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 2rem;
+
+  --text-md: 1rem;
+  --text-md--line-height: 1.875rem;
+
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.75rem;
+
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.5rem;
 
   /* Font Weights */
   --font-weight-regular: 400;
@@ -33,46 +51,54 @@
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
 
-  /* Colors */
-  --color-neutral-25: #fdfdfd;
-  --color-neutral-50: #fafafa;
-  --color-neutral-100: #f5f5f5;
-  --color-neutral-200: #e9eaeb;
-  --color-neutral-300: #d5d7da;
-  --color-neutral-400: #a4a7ae;
+  /* Colors - Neutral (Neutral) */
+  --color-neutral-25: #FDFDFD;
+  --color-neutral-50: #FAFAFA;
+  --color-neutral-100: #F5F5F5;
+  --color-neutral-200: #E9EAEB;
+  --color-neutral-300: #D5D7DA;
+  --color-neutral-400: #A4A7AE;
   --color-neutral-500: #717680;
   --color-neutral-600: #535862;
   --color-neutral-700: #414651;
-  --color-neutral-800: #252b37;
-  --color-neutral-900: #181d27;
-  --color-neutral-950: #0a0d12;
-  --color-primary-100: #ead0cc;
-  --color-primary-200: #b96155;
+  --color-neutral-800: #252B37;
+  --color-neutral-900: #181D27;
+  --color-neutral-950: #0A0D12; 
+
+  /* Colors - Primary (Red) */
+  --color-primary-100: #EAD0CC;
+  --color-primary-200: #B96155;
   --color-primary-300: #961200;
-  --color-primary-400: #640c00;
-  --color-base-white: #ffffff;
-  --color-base-black: #000000;
+  --color-primary-400: #640C00;
 
-  /* Spacing */
-  --spacing-0: 0;
-  --spacing-1: 0.25rem; /* 4px */
-  --spacing-2: 0.5rem; /* 8px */
-  --spacing-3: 0.75rem; /* 12px */
-  --spacing-4: 1rem; /* 16px */
-  --spacing-5: 1.25rem; /* 20px */
-  --spacing-6: 1.5rem; /* 24px */
-  --spacing-8: 2rem; /* 32px */
-  --spacing-10: 2.5rem; /* 40px */
-  --spacing-12: 3rem; /* 48px */
-  --spacing-16: 4rem; /* 64px */
+  /* Colors - Utility */
+  --color-white: #FFFFFF;
+  --color-black: #000000;
 
-  /* Border Radius */
-  --radius-none: 0;
-  --radius-sm: 0.25rem; /* 4px */
-  --radius-md: 0.5rem; /* 8px */
-  --radius-lg: 0.75rem; /* 12px */
-  --radius-xl: 1rem; /* 16px */
+  /* Radius */
+  --radius-xxs: 0.125rem;
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.25rem;
+  --radius-4xl: 1.5rem;
   --radius-full: 9999px;
+
+    /* Spacing */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
 }
 
 @layer base {
@@ -83,18 +109,6 @@
     @apply text-neutral-25 bg-white;
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
-  }
-  h1 {
-    @apply text-3xl font-bold;
-  }
-  h2 {
-    @apply text-2xl font-bold;
-  }
-  h3 {
-    @apply text-xl font-bold;
-  }
-  h4 {
-    @apply text-lg font-bold;
   }
 }
 

@@ -57,11 +57,11 @@ const SearchPage: React.FC = (): React.ReactElement => {
       {filteredResults.length > 0 && (
         <div className='w-full flex flex-col items-center'>
           <div className='w-full md:mb-2 mt-12'>
-            <h2 className='text-white text-xl md:text-2xl font-light'>
+            <h2 className='text-white text-xl md:text-display-xs font-light'>
               {searchParams.get('person_name') 
-                ? <>Movies featuring <span className="text-primary-500 font-semibold">"{searchParams.get('person_name')}"</span></>
+                ? <>Movies featuring <span className="text-primary-400 font-semibold">"{searchParams.get('person_name')}"</span></>
                 : searchParams.get('q') 
-                  ? <>Search Result for <span className="text-primary-500 font-semibold">"{searchParams.get('q')}"</span></>
+                  ? <>Search Result for <span className="text-primary-400 font-semibold">"{searchParams.get('q')}"</span></>
                   : 'Discover Movies'}
             </h2>
           </div>

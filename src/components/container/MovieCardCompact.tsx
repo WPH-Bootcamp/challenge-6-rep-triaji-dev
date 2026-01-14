@@ -24,7 +24,7 @@ const MovieCardCompact: React.FC<MovieCardProps> = ({
   const sizeClasses = {
     small: 'text-xs',
     medium: 'text-sm',
-    large: 'text-lg',
+    large: 'text-xl',
   };
 
   const handleClick = () => {

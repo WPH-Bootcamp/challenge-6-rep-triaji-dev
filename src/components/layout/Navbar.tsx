@@ -77,7 +77,7 @@ const Navbar: React.FC<NavbarProps> = () => {
 
   return (
     <>
-      <nav
+      <header
         className={`${
           isScrolled ? 'bg-neutral-950/60 backdrop-blur-lg' : 'bg-transparent'
         } text-neutral-25 py-3 md:py-4 px-4 sm:px-15 lg:px-25 xl:px-35 sticky top-0 z-50 h-16 md:h-22.5 flex items-center transition-all duration-300`}
@@ -94,23 +94,23 @@ const Navbar: React.FC<NavbarProps> = () => {
               <img
                 src='/icons/logo-navbar.svg'
                 alt='logo'
-                className='h-6 md:h-9 md:scale-110'
+                className='h-7 md:h-10'
               />
-              <div className='text-xl md:text-[30px] font-semibold'>
+              <div className='text-xl md:text-display-md font-semibold'>
                 Movie
               </div>
             </Link>
             <div className='text-md hidden md:flex space-x-12 text-shadow-lg'>
               <a
                 href='/'
-                className='hover:text-neutral-400 transition-colors'
+                className='hover:text-neutral-400 transition-colors p-2'
                 onClick={(e) => handleNavClick(e, '/')}
               >
                 Home
               </a>
               <a
                 href='/favorites'
-                className='hover:text-neutral-400 transition-colors'
+                className='hover:text-neutral-400 transition-colors p-2'
                 onClick={(e) => handleNavClick(e, '/favorites')}
               >
                 Favorites
@@ -126,7 +126,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               <Input
                 name='search'
                 placeholder='Search Movie'
-                className='hidden md:block pl-12 w-full py-2 px-4 rounded-2xl bg-neutral-800/60  focus:outline-none text-neutral-500 h-14 placeholder:text-sm md:placeholder:text-base'
+                className='hidden md:block pl-12 w-full py-2 px-4 rounded-2xl border border-neutral-800 bg-neutral-950/60  focus:outline-none text-neutral-500 h-14 placeholder:text-sm md:placeholder:text-md'
                 value={searchValue}
                 onChange={handleInputChange}
                 ref={searchInputRef}
@@ -183,27 +183,29 @@ const Navbar: React.FC<NavbarProps> = () => {
               </form>
             </div>
 
-            <Button
-              variant='icon'
-              className={`md:hidden ml-2 focus:outline-none transition-opacity duration-300 ${
+            <div className='md:hidden flex items-center space-x-6'>
+              <Button
+                variant='icon'
+                className={`ml-2 focus:outline-none transition-opacity duration-300 ${
                 searchOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
-              }`}
-              aria-label='Open search'
-              onClick={() => setSearchOpen(true)}
-            >
-              <Search className='h-5 w-5 md:h-6 md:w-6' />
-            </Button>
-            <Button
-              variant='icon'
-              className='md:hidden focus:outline-none'
-              aria-label='Open menu'
-              onClick={() => setMenuOpen(true)}
-            >
-              <Menu className='h-5 w-5 md:h-6 md:w-6' />
-            </Button>
+                }`}
+                aria-label='Open search'
+                onClick={() => setSearchOpen(true)}
+              >
+                <Search className='h-6 w-6' />
+              </Button>
+              <Button
+                variant='icon'
+                className='focus:outline-none'
+                aria-label='Open menu'
+                onClick={() => setMenuOpen(true)}
+              >
+                <Menu className='h-6 w-6' />
+              </Button>
+            </div>
           </div>
         </div>
-      </nav>
+      </header>
       <div
         className={`fixed inset-0 z-50 bg-black text-white flex flex-col px-4 sm:px-15 lg:px-25 xl:px-35 md:py-8 transition-opacity duration-300 ${
           menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
@@ -216,7 +218,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               alt='logo'
               className='h-6 md:h-9 md:scale-110'
             />
-            <span className='text-xl md:text-[30px] font-semibold'>Movie</span>
+            <span className='text-xl md:text-display-md font-semibold'>Movie</span>
           </div>
           <Button
             variant='icon'
@@ -224,7 +226,7 @@ const Navbar: React.FC<NavbarProps> = () => {
             aria-label='Close menu'
             onClick={() => setMenuOpen(false)}
           >
-            <X className='h-5 w-5' />
+            <X className='h-6 w-6' />
           </Button>
         </div>
         <nav className='flex flex-col gap-8 text-md'>
