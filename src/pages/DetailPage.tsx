@@ -83,7 +83,7 @@ const DetailPage: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className=' -mt-40 z-10 relative layout-px pb-12 -translate-y-4 md:-translate-y-32 lg:-translate-y-64'>
+      <div className=' -mt-33 z-10 relative layout-px pb-12 -translate-y-4 md:-translate-y-32 lg:-translate-y-64'>
         <div className='max-w-9xl mx-auto'>
           <div className='grid grid-cols-[140px_1fr] sm:grid-cols-[200px_1fr] md:grid-cols-[280px_1fr] space-x-6 md:space-x-8'>
             {/* Poster */}
@@ -105,7 +105,7 @@ const DetailPage: React.FC = () => {
             <div className='md:col-span-2'>
               {/* Title */}
               <div className='mb-4'>
-                <h1 className='text-xl sm:text-display-xs md:text-display-md lg:text-display-lg font-bold'>
+                <h1 className='text-xl sm:text-display-md md:text-display-lg lg:text-display-xl font-bold'>
                   {movie.title}
                 </h1>
                 <div className='flex items-center gap-2 text-sm md:text-md font-medium mt-4'>
@@ -122,7 +122,7 @@ const DetailPage: React.FC = () => {
             <div className='col-span-2 md:col-span-2 md:col-start-2 mt-4'>
               {/* Buttons */}
               <div className='mb-6'>
-                <div className='flex-between sm:justify-start gap-4'>
+                <div className='flex-between sm:flex-start gap-4'>
                   {trailerKey && (
                     <Button
                       variant='primary'
