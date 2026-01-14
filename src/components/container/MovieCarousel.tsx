@@ -7,7 +7,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '../ui/carousel';
+} from '../ui/Carousel';
 
 interface CarouselProps {
   movies: Movie[];

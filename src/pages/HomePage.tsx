@@ -6,7 +6,7 @@ import Button from '../components/ui/Button';
 import { HeroSlider } from '../components/container/HeroSlider';
 import MovieCard from '../components/container/MovieCard';
 import { HeroSection } from '../components/container/HeroSection';
-import { Carousel } from '../components/container/Carousel';
+import { Carousel } from '../components/container/MovieCarousel';
 import { useTrailer } from '../hooks/useTrailer';
 import { VideoModal } from '../components/ui/VideoModal';
 import MovieCardSkeleton from '../components/container/skeleton/MovieCardSkeleton';
