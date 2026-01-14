@@ -82,7 +82,7 @@ const MovieCardCompact: React.FC<MovieCardProps> = ({
       )}
 
       {trendingRank > 0 && (
-        <div className='absolute top-3 left-3 z-10 w-12 h-12 rounded-full bg-neutral-950/60 flex items-center justify-center text-neutral-25 text-lg font-semibold'>
+        <div className='absolute top-3 left-3 z-10 w-8 h-8 lg:w-10 lg:h-10 2xl:w-12 2xl:h-12 rounded-full bg-neutral-950/60 flex items-center justify-center text-neutral-25 text-lg font-semibold'>
           <span>{trendingRank}</span>
         </div>
       )}
@@ -90,7 +90,7 @@ const MovieCardCompact: React.FC<MovieCardProps> = ({
         isFavorite={isFavorite}
         onClick={handleFavoriteToggle}
         variant='card'
-        className={`absolute top-3 right-3 z-10 transition-opacity duration-300 ${
+        className={`absolute top-3 right-3 z-10 transition-all duration-300 w-8 h-8 lg:w-10 lg:h-10 2xl:w-12 2xl:h-12 ${
           isFavorite ? 'opacity-100 ' : 'opacity-0 group-hover:opacity-100'
         }`}
       />

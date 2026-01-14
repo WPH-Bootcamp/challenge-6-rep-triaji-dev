@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
+import { cn } from '../../lib/utils';
 
 interface FavoriteButtonProps {
   isFavorite: boolean;
@@ -37,14 +38,14 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
     <button
       aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
       title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-      className={`${variantClasses[variant]} transition-colors duration-200 ${className}`}
+      className={cn(variantClasses[variant], "transition-colors duration-200", className)}
       onClick={(e) => {
         e.stopPropagation();
         onClick();
       }}
     >
       <Heart
-        className={`cursor-pointer transition-colors duration-200 ${iconSizeClasses[size]} ${
+        className={`cursor-pointer transition-all duration-200 hover:scale-120 active:scale-105 ${iconSizeClasses[size]} ${
           isFavorite ? 'fill-red-500 text-red-500' : 'fill-transparent text-white'
         }`}
       />
