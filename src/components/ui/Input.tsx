@@ -1,5 +1,8 @@
 import React from 'react';
-import type { InputProps } from './types/Input.interface';
+
+type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  className?: string;
+};
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className = '', ...props }, ref) => {

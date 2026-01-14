@@ -77,7 +77,7 @@ export const HomePage: React.FC = (): React.ReactElement => {
   if (error) return <ErrorState message={error instanceof Error ? error.message : 'Unknown error'} onRetry={() => window.location.reload()} className="min-h-screen" />;
 
   return (
-    <div className='mx-auto bg-black min-h-screen text-white pb-20'>
+    <div className='mx-auto bg-black min-h-screen text-white pb-20 overflow-x-hidden'>
       {/* Hero Section */}
       {trendingLoading ? (
         <HeroSectionSkeleton />

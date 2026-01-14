@@ -1,6 +1,12 @@
 import { cn } from '../../lib/utils';
 import React from 'react';
-import type { ButtonProps } from './types/Button.interface';
+
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'icon';
+  icon?: React.ReactNode;
+}
+
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   variant = 'primary',
