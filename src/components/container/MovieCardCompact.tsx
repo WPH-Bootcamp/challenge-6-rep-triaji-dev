@@ -5,6 +5,7 @@ import type { MovieCardProps } from '../../types/movie';
 import { useFavoriteToggle } from '../../hooks/useFavoriteToggle';
 import FavoriteButton from '../ui/FavoriteButton';
 import Skeleton from '../ui/Skeleton';
+import LoadingSpinner from '../ui/LoadingSpinner';
 
 const MovieCardCompact: React.FC<MovieCardProps> = ({
   movie,
@@ -39,7 +40,7 @@ const MovieCardCompact: React.FC<MovieCardProps> = ({
     >
       <div className='relative overflow-hidden rounded-lg aspect-2/3 mb-2 bg-neutral-800'>
         {!isImageLoaded && (
-          <Skeleton className='absolute inset-0 w-full h-full rounded-lg z-10' />
+          <LoadingSpinner className='absolute inset-0 w-full h-full z-10 bg-neutral-900' size="medium" />
         )}
         <img
           src={getImageUrl(movie.poster_path)}

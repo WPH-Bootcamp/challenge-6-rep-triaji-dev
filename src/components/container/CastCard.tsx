@@ -1,7 +1,7 @@
 import React from 'react';
 import { getImageUrl } from '../../api/movies';
 import { User } from 'lucide-react';
-import Skeleton from '../ui/Skeleton';
+import LoadingSpinner from '../ui/LoadingSpinner';
 
 interface CastCardProps {
   name: string;
@@ -16,7 +16,7 @@ export const CastCard: React.FC<CastCardProps> = ({ name, role, profilePath }) =
      <div className='flex rounded-lg overflow-hidden w-full md:w-[360px] h-auto md:h-[104px] bg-neutral-900/10'>
        {profilePath ? (
          <div className="relative w-[50px] h-[75px] md:w-[69px] md:h-[104px] shrink-0">
-            {!isImageLoaded && <Skeleton className='absolute inset-0 w-full h-full rounded-lg z-10' />}
+            {!isImageLoaded && <LoadingSpinner className='absolute inset-0 w-full h-full rounded-lg z-10 bg-neutral-900' size="small" />}
             <img
             src={getImageUrl(profilePath)}
             alt={name}

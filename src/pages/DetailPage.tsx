@@ -16,7 +16,7 @@ import InfoCard from '../components/ui/InfoCard';
 import { useTrailer } from '../hooks/useTrailer';
 import { useFavoriteToggle } from '../hooks/useFavoriteToggle';
 import FavoriteButton from '../components/ui/FavoriteButton';
-import Skeleton from '../components/ui/Skeleton';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
 import { useScreenSize } from '../hooks/useScreenSize';
 import type { Movie } from '../types/movie';
 
@@ -69,7 +69,7 @@ const DetailPage: React.FC = () => {
     <div className='min-h-screen bg-black text-white flex flex-col'>
       {/* Background Image */}
       <div className='relative w-full h-100 md:h-160 lg:h-200'>
-        {!isBackdropLoaded && <Skeleton className='absolute inset-0 w-full h-full bg-neutral-900 rounded-none z-10' />}
+        {!isBackdropLoaded && <LoadingSpinner className='absolute inset-0 w-full h-full bg-neutral-900 z-10' size="large" />}
         <img
           src={getImageUrl(movie.backdrop_path, 'w1280')}
           alt={movie.title}
@@ -89,7 +89,7 @@ const DetailPage: React.FC = () => {
             {/* Poster */}
             <div className='row-span-2 md:col-span-1 mb-3'>
               <div className='rounded-md md:rounded-xl overflow-hidden flex items-center shadow-2xl shrink-0 relative bg-neutral-800 aspect-2/3 w-[116px] h-[174px] md:w-[260px] md:h-[384px]'>
-                {!isPosterLoaded && <Skeleton className='absolute inset-0 w-full h-full z-10' />}
+                {!isPosterLoaded && <LoadingSpinner className='absolute inset-0 w-full h-full z-10 bg-neutral-900' size="medium" />}
                 <img
                   src={getImageUrl(movie.poster_path)}
                   alt={movie.title}

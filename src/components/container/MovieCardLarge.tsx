@@ -4,6 +4,7 @@ import { getImageUrl } from '../../api/movies';
 import type { MovieCardProps } from '../../types/movie';
 import { useFavoriteToggle } from '../../hooks/useFavoriteToggle';
 import FavoriteButton from '../ui/FavoriteButton';
+import LoadingSpinner from '../ui/LoadingSpinner';
 import Skeleton from '../ui/Skeleton';
 import { useMovieTrailer } from '../../hooks/useMovies';
 import TrailerButton from '../ui/TrailerButton';
@@ -48,7 +49,7 @@ const MovieCardLarge: React.FC<MovieCardProps> = ({
         >
           <div className='relative w-32 h-44 lg:w-45 lg:h-67.5 rounded-sm lg:rounded-md bg-neutral-800 shadow-xl overflow-hidden'>
             {!isImageLoaded && (
-              <Skeleton className='absolute inset-0 w-full h-full z-10' />
+              <LoadingSpinner className='absolute inset-0 w-full h-full z-10 bg-neutral-900' size="medium" />
             )}
             <img
               src={
