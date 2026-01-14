@@ -10,13 +10,60 @@ import Skeleton from '../ui/Skeleton';
 
 
 
+import { useMovieTrailer } from '../../hooks/useMovies';
+
+interface TrailerButtonProps {
+  movieId: number;
+  onClick: () => void;
+}
+
+const TrailerButton: React.FC<TrailerButtonProps> = ({ movieId, onClick }) => {
+  const { data: trailerKey, isLoading } = useMovieTrailer(movieId);
+
+  if (isLoading) {
+    return (
+      <Button
+        variant='secondary'
+        className='opacity-50 cursor-not-allowed lg:w-auto w-full px-7 py-3 h-11 lg:h-auto text-white'
+        disabled
+        icon={<IoPlayCircle size={22} />}
+      >
+        Loading...
+      </Button>
+    );
+  }
+
+  if (!trailerKey) {
+    return (
+      <Button
+        variant='secondary'
+        className='opacity-50 cursor-not-allowed bg-neutral-700 text-neutral-400 lg:w-auto w-full px-7 py-3 h-11 lg:h-auto'
+        disabled
+        icon={<IoPlayCircle size={22} />}
+      >
+        No Trailer
+      </Button>
+    );
+  }
+
+  return (
+    <Button
+      variant='primary'
+      onClick={onClick}
+      className='lg:w-auto w-full px-7 py-3 h-11 lg:h-auto text-white'
+      icon={<IoPlayCircle size={22} />}
+    >
+      Watch Trailer
+    </Button>
+  );
+};
+
 const MovieCard: React.FC<MovieCardProps> = ({
   movie,
   variant = 'compact',
   size = 'medium',
   trendingRank = 0,
   onWatchTrailer,
-  trailerAvailable = true,
   onImageLoad,
   children,
 }): React.ReactElement => {
@@ -196,15 +243,10 @@ const MovieCard: React.FC<MovieCardProps> = ({
               </>
             ) : (
               <>
-                <Button
-                  variant='primary'
+                <TrailerButton
+                  movieId={movie.id}
                   onClick={handleWatchTrailerClick}
-                  disabled={!trailerAvailable}
-                  className=''
-                  icon={<IoPlayCircle size={22} />}
-                >
-                  Watch Trailer
-                </Button>
+                />
                 {children}
               </>
             )}
@@ -222,15 +264,10 @@ const MovieCard: React.FC<MovieCardProps> = ({
             </>
           ) : (
             <>
-            <Button
-              variant='primary'
+            <TrailerButton
+              movieId={movie.id}
               onClick={handleWatchTrailerClick}
-              disabled={!trailerAvailable}
-              className='flex-1 px-7 py-3 h-11 w-auto shadow-md text-white'
-              icon={<IoPlayCircle size={22} />}
-            >
-              Watch Trailer
-            </Button>
+            />
             <FavoriteButton
               isFavorite={isFavorite}
               onClick={handleFavoriteToggle}

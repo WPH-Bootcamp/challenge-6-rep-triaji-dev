@@ -31,13 +31,13 @@ export const useFavoriteToggle = ({
         const width = isMobile ? 300 : 520;
         return (
           <div
-            className='w-full bg-black/60 backdrop-blur-md rounded-md flex items-center justify-center gap-3 px-4 py-3 shadow-lg border border-white/10 translate-y-30'
+            className='w-full bg-black/30 backdrop-blur-lg rounded-lg flex items-center justify-center gap-3 px-4 py-3 shadow-lg border border-white/10 translate-y-30'
             style={{ width: `${width}px` }}
           >
             <div className='w-6 h-6 rounded-full bg-red-500 flex items-center justify-center shrink-0'>
               <X className='w-4 h-4 text-white' />
             </div>
-            <p className='text-white text-sm font-medium text-center'>
+            <p className='text-white text-md text-center'>
               Success Remove from Favorites
             </p>
           </div>
@@ -50,13 +50,13 @@ export const useFavoriteToggle = ({
         const width = isMobile ? 300 : 520;
         return (
           <div
-            className='w-full bg-black/60 backdrop-blur-md rounded-md flex items-center justify-center gap-3 px-4 py-3 shadow-lg border border-white/10 translate-y-30'
+            className='w-full bg-black/30 backdrop-blur-lg rounded-lg flex items-center justify-center gap-3 px-4 py-3 shadow-lg border border-white/10 translate-y-30'
             style={{ width: `${width}px` }}
           >
             <div className='w-6 h-6 rounded-full bg-white flex items-center justify-center shrink-0'>
               <Check className='w-4 h-4 text-neutral-800' />
             </div>
-            <p className='text-white text-sm font-medium text-center'>
+            <p className='text-white text-md text-center'>
               Success Add to Favorites
             </p>
           </div>

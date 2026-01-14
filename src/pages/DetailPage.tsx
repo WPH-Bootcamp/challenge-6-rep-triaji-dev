@@ -31,7 +31,7 @@ const DetailPage: React.FC = () => {
   const { data: credits, isLoading: loadingCredits } = useMovieCredits(movieId);
   const { data: genresData } = useGenres();
   
-  const { data: trailerKey } = useMovieTrailer(movieId);
+  const { data: trailerKey, isLoading: isLoadingTrailer } = useMovieTrailer(movieId);
   
   const { isModalOpen, handleWatchTrailer, closeModal, isLoading: trailerLoading } = useTrailer();
 
@@ -59,7 +59,7 @@ const DetailPage: React.FC = () => {
     });
   };
 
-  if (loadingMovie || loadingCredits) return <DetailPageSkeleton />;
+  if (loadingMovie || loadingCredits || isLoadingTrailer) return <DetailPageSkeleton />;
   if (!movie) return <div className='text-center py-20 bg-black text-white min-h-screen'>Movie not found.</div>;
   if (errorMovie) return <div className='text-center py-20 text-red-500 bg-black min-h-screen'>Error loading details</div>;
 
@@ -123,17 +123,19 @@ const DetailPage: React.FC = () => {
               {/* Buttons */}
               <div className='mb-6'>
                 <div className='flex items-center justify-between sm:justify-start gap-4'>
-                  <Button
-                    variant='primary'
-                    icon={<IoPlayCircle size={24} />}
-                    onClick={() =>
-                      handleWatchTrailer(movie.id, trailerKey || undefined)
-                    }
-                    disabled={trailerLoading}
-                    className='rounded-full px-10 py-3 text-md font-bold bg-primary-300 hover:bg-primary-400 border-none flex-1 w-auto md:flex-none md:w-64 shadow-lg'
-                  >
-                    {trailerLoading ? 'Loading...' : 'Watch Trailer'}
-                  </Button>
+                  {trailerKey && (
+                    <Button
+                      variant='primary'
+                      icon={<IoPlayCircle size={24} />}
+                      onClick={() =>
+                        handleWatchTrailer(movie.id, trailerKey || undefined)
+                      }
+                      disabled={trailerLoading}
+                      className='rounded-full px-10 py-3 text-md font-bold bg-primary-300 hover:bg-primary-400 border-none flex-1 w-auto md:flex-none md:w-64 shadow-lg'
+                    >
+                      {trailerLoading ? 'Loading...' : 'Watch Trailer'}
+                    </Button>
+                  )}
                   <FavoriteButton
                     isFavorite={isFavorite}
                     onClick={handleFavoriteToggle}
