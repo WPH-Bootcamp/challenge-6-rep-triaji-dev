@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className='bg-base-black text-white py-8 border-t border-neutral-900 mt-4  '>
-      <div className=' mx-auto  px-4 sm:px-15 lg:px-25 xl:px-35  '>
+      <div className=' mx-auto  layout-px  '>
         <div className='flex flex-col md:flex-row justify-between '>
           <Link
             to='/'
@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
               Movie
             </div>
           </Link>
-          <div className='mt-4 md:mt-0 text-xs md:text-sm text-neutral-600 flex items-center justify-start'>
+          <div className='mt-4 md:mt-0 text-xs md:text-sm text-neutral-600 flex-start'>
             Copyright ©2025 Movie Explorer
           </div>
         </div>

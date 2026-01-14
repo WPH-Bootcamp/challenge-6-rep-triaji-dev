@@ -33,7 +33,7 @@ const SearchPage: React.FC = (): React.ReactElement => {
 
   return (
     <div
-      className={`px-4 sm:px-15 lg:px-25 xl:px-35 mt-20 min-h-[80vh] flex justify-center ${
+      className={`layout-px mt-28.5 md:mt-36 min-h-[80vh] flex justify-center ${
         showNotFound || loading ? 'items-center' : 'items-start'
       }`}
     >
@@ -56,12 +56,12 @@ const SearchPage: React.FC = (): React.ReactElement => {
       )}
       {filteredResults.length > 0 && (
         <div className='w-full flex flex-col items-center'>
-          <div className='w-full md:mb-2 mt-12'>
+          <div className='w-full md:mb-2'>
             <h2 className='text-white text-xl md:text-display-xs font-light'>
               {searchParams.get('person_name') 
-                ? <>Movies featuring <span className="text-primary-400 font-semibold">"{searchParams.get('person_name')}"</span></>
+                ? <>Movies featuring <span className="text-primary-300 font-semibold">"{searchParams.get('person_name')}"</span></>
                 : searchParams.get('q') 
-                  ? <>Search Result for <span className="text-primary-400 font-semibold">"{searchParams.get('q')}"</span></>
+                  ? <>Search Result for <span className="text-primary-300 font-semibold">"{searchParams.get('q')}"</span></>
                   : 'Discover Movies'}
             </h2>
           </div>
@@ -77,7 +77,7 @@ const SearchPage: React.FC = (): React.ReactElement => {
             ))}
           </div>
           {hasMoreResults && (
-            <div className='w-full flex items-center justify-center mb-8'>
+            <div className='w-full flex-center mb-8'>
               <Button
                 variant='secondary'
                 className='shadow-2xl'

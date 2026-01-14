@@ -80,10 +80,10 @@ const Navbar: React.FC<NavbarProps> = () => {
       <header
         className={`${
           isScrolled ? 'bg-neutral-950/60 backdrop-blur-lg' : 'bg-transparent'
-        } text-neutral-25 py-3 md:py-4 px-4 sm:px-15 lg:px-25 xl:px-35 sticky top-0 z-50 h-16 md:h-22.5 flex items-center transition-all duration-300`}
+        } text-neutral-25 py-3 md:py-4 layout-px sticky top-0 z-50 h-16 md:h-22.5 flex items-center transition-all duration-300`}
       >
-        <div className=' flex items-center justify-between w-full'>
-          <div className='flex items-center space-x-20'>
+        <div className=' flex-between w-full'>
+          <div className='flex items-center gap-16'>
             <Link
               to='/'
               className={`flex space-x-2 items-center hover:opacity-80 transition-all duration-300 ${
@@ -100,7 +100,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 Movie
               </div>
             </Link>
-            <div className='text-md hidden md:flex space-x-12 text-shadow-lg'>
+            <div className='text-md hidden md:flex gap-12 text-shadow-lg'>
               <a
                 href='/'
                 className='hover:text-neutral-400 transition-colors p-2'
@@ -117,7 +117,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               </a>
             </div>
           </div>
-          <div className='flex items-center space-x-2'>
+          <div className='flex items-center gap-2'>
             <form
               onSubmit={handleSearch}
               className='relative max-w-60 flex items-center justify-end backdrop-blur-lg rounded-2xl'
@@ -211,7 +211,7 @@ const Navbar: React.FC<NavbarProps> = () => {
           menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
       >
-        <div className='flex items-center justify-between mb-8 md:mb-12 h-16'>
+        <div className='flex-between mb-8 md:mb-12 h-16'>
           <div className='flex items-center space-x-2'>
             <img
               src='/icons/logo-navbar.svg'

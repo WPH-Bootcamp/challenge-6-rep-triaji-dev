@@ -9,7 +9,6 @@ import LoadingSpinner from '../ui/LoadingSpinner';
 
 const MovieCardCompact: React.FC<MovieCardProps> = ({
   movie,
-  size = 'medium',
   trendingRank = 0,
   onImageLoad,
 }) => {
@@ -20,12 +19,6 @@ const MovieCardCompact: React.FC<MovieCardProps> = ({
   });
 
   const [isImageLoaded, setIsImageLoaded] = React.useState(false);
-
-  const sizeClasses = {
-    small: 'text-xs',
-    medium: 'text-sm',
-    large: 'text-xl',
-  };
 
   const handleClick = () => {
     navigate(`/movie/${movie.id}`);
@@ -38,7 +31,7 @@ const MovieCardCompact: React.FC<MovieCardProps> = ({
       }`}
       onClick={!isImageLoaded ? undefined : handleClick}
     >
-      <div className='relative overflow-hidden rounded-lg aspect-2/3 mb-2 bg-neutral-800'>
+      <div className='relative overflow-hidden rounded-lg aspect-216/316 mb-1 md:mb-3 bg-neutral-800'>
         {!isImageLoaded && (
           <LoadingSpinner className='absolute inset-0 w-full h-full z-10 bg-neutral-900' size="medium" />
         )}
@@ -60,29 +53,27 @@ const MovieCardCompact: React.FC<MovieCardProps> = ({
         />
       </div>
       {!isImageLoaded ? (
-        <Skeleton className='h-6 w-3/4 mb-1' />
+        <Skeleton className='h-6 w-3/4' />
       ) : (
         <h3
-          className={`font-medium ${
-            sizeClasses[size]
-          } line-clamp-1 group-hover:text-primary-300 transition-colors`}
+          className={`font-medium text-md md:text-lg line-clamp-1 group-hover:text-primary-300 transition-colors mb-0 md:mb-0.5`}
         >
           {movie.title}
         </h3>
       )}
 
       {!isImageLoaded ? (
-        <Skeleton className='h-5 w-1/2 mt-2 mb-2' />
+        <Skeleton className='h-5 w-1/2' />
       ) : (
         <div
-          className={`text-md text-neutral-400 mt-2 mb-2 group-hover:opacity-50 transition-opacity duration-300`}
+          className={`text-sm md:text-md text-neutral-400 group-hover:opacity-50 transition-opacity duration-300`}
         >
           ⭐ {movie.vote_average.toFixed(1)}/10
         </div>
       )}
 
       {trendingRank > 0 && (
-        <div className='absolute top-3 left-3 z-10 w-8 h-8 lg:w-10 lg:h-10 2xl:w-12 2xl:h-12 rounded-full bg-neutral-950/60 flex items-center justify-center text-neutral-25 text-lg font-semibold'>
+        <div className='absolute top-3 left-3 z-10 w-8 h-8 lg:w-12 lg:h-12 rounded-full bg-neutral-950/60 flex-center text-neutral-25 text-lg font-semibold'>
           <span>{trendingRank}</span>
         </div>
       )}
@@ -90,7 +81,7 @@ const MovieCardCompact: React.FC<MovieCardProps> = ({
         isFavorite={isFavorite}
         onClick={handleFavoriteToggle}
         variant='card'
-        className={`absolute top-3 right-3 z-10 transition-all duration-300 w-8 h-8 lg:w-10 lg:h-10 2xl:w-12 2xl:h-12 ${
+        className={`absolute top-3 right-3 z-10 transition-all duration-300 w-8 h-8 lg:w-12 lg:h-12 ${
           isFavorite ? 'opacity-100 ' : 'opacity-0 group-hover:opacity-100'
         }`}
       />

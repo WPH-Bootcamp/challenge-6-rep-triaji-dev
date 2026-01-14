@@ -51,7 +51,7 @@ export const Carousel: React.FC<CarouselProps> = ({ movies }) => {
     >
       <CarouselContent className="-ml-3 md:-ml-4" viewportClassName="overflow-visible">
         {items.map((movie, idx) => (
-          <CarouselItem key={movie.id} className="pl-3 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5">
+          <CarouselItem key={movie.id} className="pl-3 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6">
             <MovieCard movie={movie} size='large' trendingRank={idx + 1} />
           </CarouselItem>
         ))}
@@ -71,8 +71,8 @@ export const Carousel: React.FC<CarouselProps> = ({ movies }) => {
         style={{ background: canScrollNext ? 'linear-gradient(to left, #000, transparent)' : undefined }}
       />
 
-      {canScrollPrev && <CarouselPrevious variant="icon" className="left-2 md:-left-20 top-[40%] bg-neutral-800/80 hover:bg-neutral-700/80 text-white border-none h-10 w-10 md:h-12 md:w-12 rounded-full flex items-center justify-center p-0 md:opacity-0 group-hover/carousel:opacity-100 transition-opacity z-20" />}
-      {canScrollNext && <CarouselNext variant="icon" className="right-2 md:-right-20 top-[40%] bg-neutral-800/80 hover:bg-neutral-700/80 text-white border-none h-10 w-10 md:h-12 md:w-12 rounded-full flex items-center justify-center p-0 md:opacity-0 group-hover/carousel:opacity-100 transition-opacity z-20" />}
+      {canScrollPrev && <CarouselPrevious variant="icon" className="left-2 md:-left-20 top-[40%] bg-neutral-800/80 hover:bg-neutral-700/80 text-white border-none h-10 w-10 md:h-12 md:w-12 rounded-full flex-center p-0 md:opacity-0 group-hover/carousel:opacity-100 transition-opacity z-20" />}
+      {canScrollNext && <CarouselNext variant="icon" className="right-2 md:-right-20 top-[40%] bg-neutral-800/80 hover:bg-neutral-700/80 text-white border-none h-10 w-10 md:h-12 md:w-12 rounded-full flex-center p-0 md:opacity-0 group-hover/carousel:opacity-100 transition-opacity z-20" />}
     </MovieCarousel>
   );
 };

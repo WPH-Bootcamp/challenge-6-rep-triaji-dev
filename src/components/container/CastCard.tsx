@@ -27,7 +27,7 @@ export const CastCard: React.FC<CastCardProps> = ({ id, name, role, profilePath 
            />
         </div>
       ) : (
-         <div className='w-[50px] h-[75px] md:w-[69px] md:h-[104px] bg-neutral-900/20 rounded-lg shrink-0 flex items-center justify-center overflow-hidden'>
+         <div className='w-[50px] h-[75px] md:w-[69px] md:h-[104px] bg-neutral-900/20 rounded-lg shrink-0 flex-center overflow-hidden'>
             <User className='w-6 h-6 md:w-12 md:h-12 text-neutral-500 transition-transform duration-300 group-hover:scale-110' />
          </div>
       )}

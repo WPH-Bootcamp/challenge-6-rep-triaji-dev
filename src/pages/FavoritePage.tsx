@@ -21,7 +21,7 @@ const FavoritePage: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <div className='px-4 sm:px-15 lg:px-25 xl:px-35 mt-30 min-h-[70vh]'>
+    <div className='layout-px mt-28.5 md:mt-36 min-h-[70vh]'>
       <div className='text-display-xs md:text-display-md font-bold'>Favorites</div>
       {loading && <LoadingSpinner className="h-60" />}
       {showNotFound && (
@@ -57,7 +57,7 @@ const FavoritePage: React.FC = (): React.ReactElement => {
             ))}
           </div>
           {visibleCount < favoriteMovies.length && (
-            <div className='w-full flex items-center justify-center mb-8'>
+            <div className='w-full flex-center mb-8'>
               <Button
                 variant='secondary'
                 className='shadow-2xl'

@@ -29,7 +29,7 @@ const MovieCardLarge: React.FC<MovieCardProps> = ({
   }, [onWatchTrailer, movie.id, trailerKey]);
 
   return (
-    <div className='relative flex flex-col mb-0 lg:mb-16 mt-8 lg:mt-12 w-full border-b border-neutral-800 last:border-b-0 pb-4 lg:pb-12'>
+    <div className='relative flex flex-col mb-0 lg:mb-8 mt-8 lg:mt-12 w-full border-b border-neutral-800 last:border-b-0 pb-4 lg:pb-12'>
       <FavoriteButton
         size='large'
         isFavorite={isFavorite}
@@ -43,11 +43,11 @@ const MovieCardLarge: React.FC<MovieCardProps> = ({
           to={`/movie/${movie.id}`}
           tabIndex={!isImageLoaded ? -1 : 0}
           aria-label={`Go to details for ${movie.title}`}
-          className={`shrink-0 mr-4 lg:mr-8 ${
+          className={`shrink-0 mr-4 lg:mr-6 ${
             !isImageLoaded ? 'pointer-events-none cursor-default' : ''
           }`}
         >
-          <div className='relative w-32 h-44 lg:w-45 lg:h-67.5 rounded-sm lg:rounded-md bg-neutral-800 shadow-xl overflow-hidden'>
+          <div className='relative w-26 h-39 lg:w-45 lg:h-67.5 rounded-sm lg:rounded-md bg-neutral-800 shadow-xl overflow-hidden'>
             {!isImageLoaded && (
               <LoadingSpinner className='absolute inset-0 w-full h-full z-10 bg-neutral-900' size="medium" />
             )}
@@ -118,7 +118,7 @@ const MovieCardLarge: React.FC<MovieCardProps> = ({
                 <Skeleton className='h-4 w-4/6' />
               </div>
             ) : (
-              <p className='text-neutral-400 text-xs sm:text-sm lg:text-md mb-4 line-clamp-4 md:line-clamp-3 max-w-4xl mt-2 hover:text-neutral-500'>
+              <p className='text-neutral-400 text-xs sm:text-sm lg:text-md mb-4 line-clamp-2 max-w-4xl mt-2 hover:text-neutral-500'>
                 {movie.overview}
               </p>
             )}
@@ -146,7 +146,7 @@ const MovieCardLarge: React.FC<MovieCardProps> = ({
 
       {/* Mobile Version */}
       <div className='lg:hidden mt-8'>
-        <div className='flex gap-3 items-center'>
+        <div className='flex gap-4 items-center'>
           {!isImageLoaded ? (
             <>
               <Skeleton className='flex-1 h-11 rounded-full' />

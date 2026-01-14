@@ -92,12 +92,10 @@ export const HomePage: React.FC = (): React.ReactElement => {
       ) : null}
 
       {/* Trending Now */}
-      <section className='px-4 sm:px-15 lg:px-35 mb-8 md:mb-12'>
-        <div className='flex items-center justify-between mb-4 md:mb-6 md:mt-40 lg:mt-0 '>
-          <h2 className='text-xl md:text-display-xs lg:text-display-md font-bold pb-2 lg:pb-8'>
-            Trending Now
-          </h2>
-        </div>
+      <section className='layout-px mb-8 md:mb-21 -mt-4 md:-mt-15.5 relative z-20'>
+        <h2 className='text-display-xs lg:text-display-lg font-bold mb-6 md:mb-10'>
+          Trending Now
+        </h2>
         {trendingLoading ? (
             <div className="flex gap-3 md:gap-4 overflow-hidden">
                 {[...Array(5)].map((_, i) => (
@@ -112,12 +110,12 @@ export const HomePage: React.FC = (): React.ReactElement => {
       </section>
 
       {/* New Release */}
-      <section className='px-4 sm:px-15 lg:px-25 xl:px-35'>
+      <section className='layout-px'>
         <div className='relative'>
-          <h2 className='text-xl md:text-display-xs lg:text-display-md font-bold mb-4 md:mb-6 pb-2 lg:pb-8'>
+          <h2 className='text-display-xs lg:text-display-lg font-bold mb-6 md:mb-10'>
             New Release
           </h2>
-          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4'>
+          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 space-y-4 md:gap-4 md:space-y-4'>
             {newReleaseMovies.map((movie) => (
               <MovieCard 
                 key={`new-${movie.id}`} 
@@ -137,7 +135,7 @@ export const HomePage: React.FC = (): React.ReactElement => {
           {hasNextPage && (
             <div>
               <div
-                className='w-full h-[150px] md:h-[400px] absolute bottom-10 left-0 bg-linear-to-t from-black via-black/80 to-transparent flex items-center justify-center z-50 transition-all duration-300 hover:from-black/90 hover:via-black/90 active:from-black active:via-black/95'
+                className='w-full h-[150px] md:h-[400px] absolute bottom-10 left-0 bg-linear-to-t from-black via-black/80 to-transparent flex-center z-50 transition-all duration-300 hover:from-black/90 hover:via-black/90 active:from-black active:via-black/95'
                 onClick={() => {
                    if (allImagesLoaded) fetchNextPage();
                 }}
@@ -154,7 +152,7 @@ export const HomePage: React.FC = (): React.ReactElement => {
                   {isFetchingNextPage ? 'Loading...' : !allImagesLoaded ? 'Loading...' : 'Load More'}
                 </Button>
               </div>
-              <div ref={ref} className='w-full h-20 flex items-center justify-center p-4'>
+              <div ref={ref} className='w-full h-20 flex-center p-4'>
                 {(isFetchingNextPage || !allImagesLoaded) && <MovieCardSkeleton variant="compact" />}
               </div>
             </div>

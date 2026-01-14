@@ -12,7 +12,7 @@ export const HeroSectionSkeleton: React.FC = () => {
         <Skeleton className='w-full h-full rounded-none bg-neutral-900' />
         
         {/* Content Overlay */}
-        <div className='absolute top-80 sm:top-70 md:top-85 lg:top-120 left-0 z-20 w-full px-4 sm:px-15 lg:px-25 xl:px-35 max-w-6xl'>
+        <div className='absolute top-80 sm:top-70 md:top-85 lg:top-120 left-0 z-20 w-full layout-px max-w-6xl'>
           <div className='flex flex-col h-full'>
             <div className='flex-1'>
               {/* Title Skeleton */}

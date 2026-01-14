@@ -16,7 +16,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   ...props
 }, ref) => {
   const baseClasses =
-    'rounded-full font-semibold transition-colors cursor-pointer flex items-center justify-center gap-2';
+    'rounded-full font-semibold transition-colors cursor-pointer flex-center gap-2';
   
   const variantClasses = {
     primary: 'bg-primary-300 hover:bg-primary-400 text-white px-6 py-2 h-11 lg:h-13 w-57.5 text-md',

@@ -14,7 +14,7 @@ export const DetailPageSkeleton: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className=' -mt-40 z-10 relative px-4 sm:px-15 lg:px-25 xl:px-35 pb-12 -translate-y-4 md:-translate-y-32 lg:-translate-y-64'>
+      <div className=' -mt-40 z-10 relative layout-px pb-12 -translate-y-4 md:-translate-y-32 lg:-translate-y-64'>
         <div className='max-w-9xl mx-auto'>
           <div className='grid grid-cols-[140px_1fr] sm:grid-cols-[200px_1fr] md:grid-cols-[280px_1fr] space-x-6 md:space-x-8'>
             {/* Poster Skeleton */}
@@ -39,7 +39,7 @@ export const DetailPageSkeleton: React.FC = () => {
             <div className='col-span-2 md:col-span-2 md:col-start-2 mt-4'>
               {/* Buttons Skeleton */}
               <div className='mb-6'>
-                <div className='flex items-center justify-between sm:justify-start gap-4'>
+                <div className='flex-between sm:justify-start gap-4'>
                    <Skeleton className='rounded-full h-12 w-auto flex-1 md:flex-none md:w-64' />
                    <Skeleton className={`rounded-full ${isMobile ? 'h-10 w-10' : 'h-12 w-12'}`} />
                 </div>

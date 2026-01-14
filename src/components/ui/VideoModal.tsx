@@ -10,7 +10,7 @@ export const VideoModal = ({ isOpen, onClose, videoId }: VideoModalProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className='fixed inset-0 z-50 flex items-center justify-center'>
+    <div className='fixed inset-0 z-50 flex-center'>
       <div className='absolute inset-0 bg-black/95' onClick={onClose} />
       <div className='relative w-full max-w-4xl mx-4'>
         <button
