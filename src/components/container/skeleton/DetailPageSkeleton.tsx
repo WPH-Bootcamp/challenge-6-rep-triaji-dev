@@ -9,7 +9,7 @@ export const DetailPageSkeleton: React.FC = () => {
     <div className='min-h-screen bg-black text-white flex flex-col'>
       {/* Background Image Skeleton */}
       <div className='relative w-full h-100 md:h-160 lg:h-200'>
-         <Skeleton className='w-full h-full rounded-none bg-neutral-900' />
+         <Skeleton className='w-full h-full rounded-none bg-neutral-950' />
          <div className='absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent' />
       </div>
 

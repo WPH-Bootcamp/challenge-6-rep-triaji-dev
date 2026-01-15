@@ -33,7 +33,7 @@ const SearchPage: React.FC = (): React.ReactElement => {
 
   return (
     <div
-      className={`layout-px mt-28.5 md:mt-36 min-h-[80vh] flex justify-center ${
+      className={`layout-px mt-22 md:mt-28.5 min-h-[70vh] flex justify-center ${
         showNotFound || loading ? 'items-center' : 'items-start'
       }`}
     >

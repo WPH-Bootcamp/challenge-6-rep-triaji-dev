@@ -21,15 +21,15 @@ const FavoritePage: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <div className='layout-px mt-28.5 md:mt-36 min-h-[70vh]'>
+    <div className='layout-px mt-22 md:mt-28.5 min-h-[70vh]'>
       <div className='text-display-xs md:text-display-md font-bold'>Favorites</div>
       {loading && <LoadingSpinner className="h-60" />}
       {showNotFound && (
         <div className='flex flex-col items-center justify-center'>
           <img
-            src='/icons/data-not-found.svg'
+            src='/icons/data-empty.svg'
             alt='No Favorite Movies'
-            className='w-[200px] h-[200px] mb-6 mt-30'
+            className='h-[170px] mb-6 mt-26'
           />
           <div className='text-md font-semibold text-white mb-2'>
             Data Empty

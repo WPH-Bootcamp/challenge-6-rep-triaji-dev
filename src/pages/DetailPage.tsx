@@ -69,7 +69,7 @@ const DetailPage: React.FC = () => {
     <div className='min-h-screen bg-black text-white flex flex-col'>
       {/* Background Image */}
       <div className='relative w-full h-100 md:h-160 lg:h-200'>
-        {!isBackdropLoaded && <LoadingSpinner className='absolute inset-0 w-full h-full bg-neutral-900 z-10' size="large" />}
+        {!isBackdropLoaded && <LoadingSpinner className='absolute inset-0 w-full h-full bg-linear-to-b from-neutral-900 via-neutral-950/50 to-transparent z-10' size="large" />}
         <img
           src={getImageUrl(movie.backdrop_path, 'w1280')}
           alt={movie.title}

@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../ui/Button';
 import type { Movie } from '../../types/movie';
 import { getImageUrl } from '../../api/movies';
 import { IoPlayCircle } from 'react-icons/io5';
+import LoadingSpinner from '../ui/LoadingSpinner';
 
 interface HeroSectionProps {
   movie: Movie;
@@ -11,40 +13,47 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ movie, onWatchTrailer }: HeroSectionProps) => {
   const navigate = useNavigate();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className='relative w-full mb-4'>
-      <div className='relative w-full h-133 xl:h-202.5'>
-        <div className='absolute inset-0 bottom-0 bg-linear-to-t from-black via-black/70 md:via-black/50 to-transparent z-10' />
+    <div className='relative mb-4 w-full'>
+      <div className='relative h-133 w-full xl:h-202.5'>
+        <div className='absolute inset-0 bottom-0 z-10 bg-linear-to-t from-black via-black/70 to-transparent md:via-black/50' />
+        {!isLoaded && (
+          <LoadingSpinner className='absolute inset-0 z-0 bg-neutral-900' />
+        )}
         <img
           src={getImageUrl(movie.backdrop_path, 'w1280')}
           alt={movie.title}
-          className='w-full h-full object-cover object-center'
+          className={`h-full w-full object-cover object-center transition-opacity duration-500 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
           loading='lazy'
+          onLoad={() => setIsLoaded(true)}
         />
-        <div className='absolute top-[clamp(13.75rem,30vw,18.75rem)] left-0 z-20 w-full layout-px text-white max-w-6xl'>
-          <div className='flex flex-col h-full'>
+        <div className='layout-px absolute top-[clamp(13.75rem,30vw,18.75rem)] left-0 z-20 w-full max-w-6xl text-white'>
+          <div className='flex h-full flex-col'>
             <div className='flex-1'>
-              <h1 className='text-display-xs sm:text-display-md md:text-display-lg lg:text-display-2xl font-bold mb-4 drop-shadow-lg leading-tight'>
+              <h1 className='text-display-xs sm:text-display-md md:text-display-lg lg:text-display-2xl mb-4 leading-tight font-bold drop-shadow-lg'>
                 {movie.title}
               </h1>
-              <p className='text-sm md:text-lg text-neutral-400 drop-shadow-md mb-12 leading-relaxed max-w-2xl line-clamp-5 md:line-clamp-3'>
+              <p className='mb-12 line-clamp-5 max-w-2xl text-sm leading-relaxed text-neutral-400 drop-shadow-md md:line-clamp-3 md:text-lg'>
                 {movie.overview}
               </p>
             </div>
-            <div className='flex flex-col gap-3 w-full md:flex-row md:gap-4 shrink-0'>
+            <div className='flex w-full shrink-0 flex-col gap-3 md:flex-row md:gap-4'>
               <Button
                 variant='primary'
                 icon={<IoPlayCircle size={24} />}
                 onClick={() => onWatchTrailer(movie.id)}
-                className='w-full md:w-auto text-md md:text-lg md:min-w-[230px] shrink-0'
+                className='text-md w-full shrink-0 md:w-auto md:min-w-[230px] md:text-lg'
               >
                 Watch Trailer
               </Button>
               <Button
                 variant='secondary'
                 onClick={() => navigate(`/movie/${movie.id}`)}
-                className='w-full md:w-auto text-md md:text-lg md:min-w-[230px] shrink-0'
+                className='text-md w-full shrink-0 md:w-auto md:min-w-[230px] md:text-lg'
               >
                 See Detail
               </Button>
