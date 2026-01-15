@@ -5,12 +5,12 @@ const Footer: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <footer className='bg-base-black text-white py-8 border-t border-neutral-900 mt-4  '>
-      <div className=' mx-auto  layout-px  '>
-        <div className='flex flex-col md:flex-row justify-between '>
+    <footer className='bg-base-black mt-4 border-t border-neutral-900 text-white'>
+      <div className='layout-px mx-auto pt-6 pb-8 md:py-10'>
+        <div className='flex flex-col gap-2 justify-between md:flex-row'>
           <Link
             to='/'
-            className='flex items-center space-x-2 hover:opacity-80 transition-opacity'
+            className='flex items-center space-x-2 transition-opacity hover:opacity-80'
             onClick={(e) => {
               if (window.location.pathname === '/') {
                 e.preventDefault();
@@ -29,11 +29,11 @@ const Footer: React.FC = () => {
               alt='logo'
               className='h-7 md:scale-105'
             />
-            <div className='text-lg md:text-display-xs font-semibold'>
+            <div className='md:text-display-sm text-lg font-semibold'>
               Movie
             </div>
           </Link>
-          <div className='mt-4 md:mt-0 text-xs md:text-sm text-neutral-600 flex-start'>
+          <div className='flex-start text-xs text-neutral-600 md:mt-0 md:text-md'>
             Copyright ©2025 Movie Explorer
           </div>
         </div>

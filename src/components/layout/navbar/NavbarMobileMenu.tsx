@@ -16,20 +16,21 @@ const NavbarMobileMenu: React.FC<NavbarMobileMenuProps> = ({
 }) => {
   return (
     <div
-      className={`fixed inset-0 z-50 bg-black text-white flex flex-col px-4 sm:px-15 lg:px-25 xl:px-35 md:py-8 transition-opacity duration-300 ${
-        menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+      className={`fixed inset-0 z-50 flex flex-col bg-black px-4 text-white transition-opacity duration-300 sm:px-15 md:py-8 lg:px-25 xl:px-35 ${
+        menuOpen
+          ? 'visible opacity-100'
+          : 'pointer-events-none invisible opacity-0'
       }`}
     >
-      <div className='flex-between mb-8 md:mb-12 h-16'>
+      <div className='flex-between mb-8 h-16 md:mb-12'>
         <div className='flex items-center space-x-2'>
-            <NavbarLogo 
-                className="hover:opacity-100" 
-                onClick={(e) => {
-                    setMenuOpen(false);
-                    onNavClick(e, '/');
-                }}
-                isMobileEmbed
-            />
+          <NavbarLogo
+            className='hover:opacity-100'
+            onClick={(e) => {
+              setMenuOpen(false);
+              onNavClick(e, '/');
+            }}
+          />
         </div>
         <Button
           variant='icon'
@@ -40,17 +41,11 @@ const NavbarMobileMenu: React.FC<NavbarMobileMenuProps> = ({
           <X className='h-6 w-6' />
         </Button>
       </div>
-      <nav className='flex flex-col gap-8 text-md'>
-        <a
-          href='/'
-          onClick={(e) => onNavClick(e, '/')}
-        >
+      <nav className='text-md flex flex-col gap-8'>
+        <a href='/' onClick={(e) => onNavClick(e, '/')}>
           Home
         </a>
-        <a
-          href='/favorites'
-          onClick={(e) => onNavClick(e, '/favorites')}
-        >
+        <a href='/favorites' onClick={(e) => onNavClick(e, '/favorites')}>
           Favorites
         </a>
       </nav>

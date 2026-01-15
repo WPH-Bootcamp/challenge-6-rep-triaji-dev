@@ -24,11 +24,11 @@ export const useFavoritesStore = create<FavoritesState>()(
         set((state) => ({
           favorites: state.favorites.filter((movie) => movie.id !== movieId),
         })),
-      isFavorite: (movieId) => get().favorites.some((movie) => movie.id === movieId),
+      isFavorite: (movieId) =>
+        get().favorites.some((movie) => movie.id === movieId),
     }),
     {
-      name: 'favorites-storage', // name of the item in the storage (must be unique)
-      // defaults to localStorage
+      name: 'favorites-storage',
     }
   )
 );

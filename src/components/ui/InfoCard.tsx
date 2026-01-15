@@ -8,13 +8,11 @@ interface InfoCardProps {
 
 const InfoCard: React.FC<InfoCardProps> = ({ icon, label, value }) => {
   return (
-    <div className='bg-black/80 border border-neutral-900 rounded-2xl p-3 sm:p-6 flex flex-col items-center shadow-md'>
-      <img src={icon} alt={label} className='w-5 h-5 sm:w-8 sm:h-8' />
-      <div className='text-neutral-300 text-xs sm:text-lg mt-3 sm:mt-4'>
-        {label}
-      </div>
-      <div className='text-lg sm:text-xl font-semibold mt-2 sm:mt-4 text-center'>
-        {value}
+    <div className='flex flex-col items-center justify-between rounded-2xl border border-neutral-900 bg-black/80 p-4 shadow-md sm:p-5 gap-2'>
+      <img src={icon} alt={label} className='h-6 w-6 sm:h-8 sm:w-8' />
+      <div className='flex-center flex-col'>
+        <div className='sm:text-md text-xs text-neutral-300'>{label}</div>
+        <div className='text-center text-lg font-semibold sm:text-xl line-clamp-1'>{value}</div>
       </div>
     </div>
   );

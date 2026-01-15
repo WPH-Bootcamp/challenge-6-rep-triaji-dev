@@ -85,10 +85,10 @@ const DetailPage: React.FC = () => {
       {/* Main Content */}
       <div className=' -mt-33 z-10 relative layout-px pb-12 -translate-y-4 md:-translate-y-32 lg:-translate-y-64'>
         <div className='max-w-9xl mx-auto'>
-          <div className='grid grid-cols-[140px_1fr] sm:grid-cols-[200px_1fr] md:grid-cols-[280px_1fr] space-x-6 md:space-x-8'>
+          <div className='grid grid-cols-[140px_1fr] sm:grid-cols-[200px_1fr] md:grid-cols-[292px_1fr] mb-6 md:mb-12'>
             {/* Poster */}
-            <div className='row-span-2 md:col-span-1 mb-3'>
-              <div className='rounded-md md:rounded-xl overflow-hidden flex items-center shadow-2xl shrink-0 relative bg-neutral-800 aspect-2/3 w-[116px] h-[174px] md:w-[260px] md:h-[384px]'>
+            <div className='row-span-2 md:col-span-1 mb-6 md:mb-0'>
+              <div className='rounded-md md:rounded-xl overflow-hidden flex items-center shadow-2xl shrink-0 relative bg-neutral-800 aspect-2/3 w-[116px] h-[171px] md:w-[260px] md:h-[384px]'>
                 {!isPosterLoaded && <LoadingSpinner className='absolute inset-0 w-full h-full z-10 bg-neutral-900' size="medium" />}
                 <img
                   src={getImageUrl(movie.poster_path)}
@@ -104,7 +104,7 @@ const DetailPage: React.FC = () => {
             {/* Content Section */}
             <div className='md:col-span-2'>
               {/* Title */}
-              <div className='mb-4'>
+              <div className='mb-6 md:mb-0'>
                 <h1 className='text-xl sm:text-display-md md:text-display-lg lg:text-display-xl font-bold'>
                   {movie.title}
                 </h1>
@@ -119,7 +119,7 @@ const DetailPage: React.FC = () => {
               </div>
             </div>
 
-            <div className='col-span-2 md:col-span-2 md:col-start-2 mt-4'>
+            <div className='col-span-2 md:col-span-2 md:col-start-2'>
               {/* Buttons */}
               <div className='mb-6'>
                 <div className='flex-between sm:flex-start gap-4'>
@@ -145,7 +145,7 @@ const DetailPage: React.FC = () => {
               </div>
 
               {/* Info Cards */}
-              <div className='grid grid-cols-3 gap-4 mb-8 max-w-4xl'>
+              <div className='grid grid-cols-3 gap-3 md:gap-5 max-w-4xl'>
                 <InfoCard
                   icon='/icons/icon-rating.svg'
                   label='Rating'
@@ -166,8 +166,8 @@ const DetailPage: React.FC = () => {
           </div>
 
           {/* Overview Section */}
-          <div className='md:mt-8'>
-            <h2 className='text-xl md:text-display-xs lg:text-display-md font-bold mb-4 md:mt-12'>
+          <div className='mb-6 md:mb-12'>
+            <h2 className='text-xl md:text-display-xs lg:text-display-md font-bold mb-2'>
               Overview
             </h2>
             <p className='text-neutral-400 text-xs md:text-sm lg:text-md leading-relaxed'>
@@ -176,11 +176,11 @@ const DetailPage: React.FC = () => {
           </div>
 
           {/* Cast & Crew */}
-          <div className='mt-12'>
-            <h2 className='text-xl md:text-display-xs lg:text-display-md font-bold mb-6'>
+          <div className=''>
+            <h2 className='text-xl md:text-display-xs lg:text-display-md font-bold mb-4 md:mb-6'>
               Cast & Crew
             </h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-10'>
               {cast.map((member) => (
                 <CastCard
                   key={member.id}

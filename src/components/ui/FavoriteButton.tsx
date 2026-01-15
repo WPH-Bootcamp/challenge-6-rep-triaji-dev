@@ -20,7 +20,7 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   const sizeClasses = {
     small: 'w-10 h-10',
     medium: 'w-11 h-11',
-    large: 'w-14 h-14',
+    large: 'w-13 h-13',
   };
 
   const iconSizeClasses = {

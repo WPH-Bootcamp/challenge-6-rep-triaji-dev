@@ -49,9 +49,9 @@ export const Carousel: React.FC<CarouselProps> = ({ movies }) => {
       }}
       className="w-full relative group/carousel"
     >
-      <CarouselContent className="-ml-3 md:-ml-4" viewportClassName="overflow-visible">
+      <CarouselContent className="-ml-4 md:-ml-5" viewportClassName="overflow-visible">
         {items.map((movie, idx) => (
-          <CarouselItem key={movie.id} className="pl-3 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6">
+          <CarouselItem key={movie.id} className="pl-4 md:pl-5 basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6">
             <MovieCard movie={movie} size='large' trendingRank={idx + 1} />
           </CarouselItem>
         ))}

@@ -44,10 +44,13 @@ const Navbar: React.FC<NavbarProps> = () => {
     }
   };
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    path: string
+  ) => {
     e.preventDefault();
     setMenuOpen(false);
-    
+
     if (path === '/' && location.pathname === '/') {
       window.scrollTo({
         top: 0,
@@ -63,40 +66,43 @@ const Navbar: React.FC<NavbarProps> = () => {
       <header
         className={`${
           isScrolled ? 'bg-neutral-950/60 backdrop-blur-lg' : 'bg-transparent'
-        } text-neutral-25 py-3 md:py-4 layout-px sticky top-0 z-50 h-16 md:h-22.5 flex items-center transition-all duration-300`}
+        } text-neutral-25 layout-px sticky top-0 z-50 flex h-16 items-center py-3 transition-all duration-300 md:h-22.5 md:py-4`}
       >
-        <div className=' flex-between w-full'>
+        <div className='flex-between w-full'>
           <div className='flex items-center gap-16'>
-            <NavbarLogo 
-                onClick={(e) => handleNavClick(e, '/')} 
-                className={searchOpen ? 'opacity-0 invisible md:opacity-100 md:visible' : 'opacity-100 visible'}
+            <NavbarLogo
+              onClick={(e) => handleNavClick(e, '/')}
+              className={
+                searchOpen
+                  ? 'invisible opacity-0 md:visible md:opacity-100'
+                  : 'visible opacity-100'
+              }
             />
             <NavbarDesktopMenu onNavClick={handleNavClick} />
           </div>
           <div className='flex items-center gap-2'>
             <NavbarSearch
-                searchOpen={searchOpen}
-                setSearchOpen={setSearchOpen}
-                searchValue={searchValue}
-                setSearchValue={setSearchValue}
-                onSearch={handleSearch}
+              searchOpen={searchOpen}
+              setSearchOpen={setSearchOpen}
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+              onSearch={handleSearch}
             />
-            <NavbarMobileActions 
-                searchOpen={searchOpen} 
-                setSearchOpen={setSearchOpen} 
-                setMenuOpen={setMenuOpen} 
+            <NavbarMobileActions
+              searchOpen={searchOpen}
+              setSearchOpen={setSearchOpen}
+              setMenuOpen={setMenuOpen}
             />
           </div>
         </div>
+        <NavbarMobileMenu
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+          onNavClick={handleNavClick}
+        />
       </header>
-      <NavbarMobileMenu 
-        menuOpen={menuOpen} 
-        setMenuOpen={setMenuOpen} 
-        onNavClick={handleNavClick} 
-      />
     </>
   );
 };
 
 export default Navbar;
-
