@@ -22,7 +22,7 @@ const NavbarMobileMenu: React.FC<NavbarMobileMenuProps> = ({
           : 'pointer-events-none invisible opacity-0'
       }`}
     >
-      <div className='flex-between mb-8 h-16 md:mb-12'>
+      <div className='flex-between mb-6 h-16 md:mb-12'>
         <div className='flex items-center space-x-2'>
           <NavbarLogo
             className='hover:opacity-100'

@@ -19,9 +19,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     'rounded-full font-semibold transition-colors cursor-pointer flex-center gap-2';
   
   const variantClasses = {
-    primary: 'bg-primary-300 hover:bg-primary-400 text-white px-6 py-2 h-11 lg:h-13 w-57.5 text-md',
+    primary: 'bg-primary-300 hover:bg-primary-400 text-white px-6 py-2 h-11 lg:h-13 min-w-57.5 text-md',
     secondary:
-      'bg-neutral-950 hover:bg-black border-1 border-neutral-800 px-6 py-2 h-11 lg:h-13 w-57.5 text-md',
+      'bg-neutral-950 hover:bg-black border-1 border-neutral-800 px-6 py-2 h-11 lg:h-13 min-w-57.5 text-md',
     icon: 'bg-transparent hover:opacity-60 transition-opacity ',
   };
 

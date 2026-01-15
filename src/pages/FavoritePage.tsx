@@ -60,7 +60,7 @@ const FavoritePage: React.FC = (): React.ReactElement => {
             <div className='w-full flex-center mb-8'>
               <Button
                 variant='secondary'
-                className='shadow-2xl'
+                className='shadow-2xl w-full'
                 onClick={handleLoadMore}
                 disabled={loading}
               >
